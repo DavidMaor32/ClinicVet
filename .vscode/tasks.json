@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Mac",
+            "type": "shell",
+            "command": "dotnet build -t:Run -f net8.0-maccatalyst",
+            "problemMatcher": [],
+            "group": "build"
+        }
+    ]
+}
