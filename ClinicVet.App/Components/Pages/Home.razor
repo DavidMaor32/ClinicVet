@@ -1,0 +1,16 @@
+﻿@inject NavigationManager NavManager
+@page "/home"
+
+<h1>Hello, world!</h1>
+
+<button @onclick="NavigateToWorkers">workers</button>
+
+@code
+{
+    private void Navigate(string uri)
+    {
+        NavManager.NavigateTo(uri);
+    }
+
+    private void NavigateToWorkers() => Navigate("Workers");
+}
