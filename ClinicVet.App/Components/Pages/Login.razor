@@ -1,0 +1,28 @@
+@page "/"
+@layout EmptyLayout
+@inject NavigationManager NavManager
+
+<h3>Login</h3>
+    
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="p-5 shadow-lg rounded bg-white">
+        <InputField Placeholder="username" @bind-Value="@_username"/>
+        <InputField Placeholder="password" @bind-Value="@_password"/>
+
+        <button @onclick="OnClickHandler" disabled="@IsLoginDisabled">
+            Login
+        </button>
+    </div>
+</div>
+
+@code {
+    string _username = "";
+    string _password = "";
+    bool IsLoginDisabled => _username.Length == 0 || _password.Length == 0;
+    
+    private void OnClickHandler()
+    {
+        NavManager.NavigateTo("/home", replace: true);
+    }
+
+}

@@ -1,0 +1,34 @@
+<div class="input-container">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label class="input-label">@Label</label>
+    }
+    
+    <input 
+        type="@Type" 
+        class="custom-input @(HasError ? "input-error" : "")" 
+        placeholder="@Placeholder"
+        value="@Value"
+        @oninput="OnInputChanged" />
+
+    @if (HasError && !string.IsNullOrEmpty(ErrorMessage))
+    {
+        <span class="error-text">@ErrorMessage</span>
+    }
+</div>
+
+@code {
+    [Parameter] public string Value { get; set; } = "";
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string Placeholder { get; set; } = "";
+    [Parameter] public string Type { get; set; } = "text";
+    [Parameter] public bool HasError { get; set; } = false;
+    [Parameter] public string ErrorMessage { get; set; } = "";
+
+    private async Task OnInputChanged(ChangeEventArgs e)
+    {
+        Value = e.Value?.ToString() ?? "";
+        await ValueChanged.InvokeAsync(Value);
+    }
+}

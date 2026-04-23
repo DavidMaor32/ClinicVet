@@ -1,0 +1,40 @@
+.input-container {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #4a4a4a;
+    font-size: 0.9rem;
+}
+
+.custom-input {
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    font-size: 1rem;
+}
+
+/* Hover & Focus states */
+.custom-input:focus {
+    border-color: #512BD4; /* MAUI Purple */
+    box-shadow: 0 0 0 3px rgba(81, 43, 212, 0.1);
+}
+
+/* Error state styling */
+.custom-input.input-error {
+    border-color: #dc3545;
+    background-color: #fff8f8;
+}
+
+.error-text {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    font-weight: 500;
+}
