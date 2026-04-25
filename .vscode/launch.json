@@ -1,0 +1,19 @@
+﻿{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Windows",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/ClinicVet.App.csproj",
+      "launchSettingsProfile": "Windows Machine"
+    },
+    {
+      "name": "Launch Mac",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/ClinicVet.App.csproj",
+      "launchSettingsProfile": "Mac Catalyst"
+    }
+  ]
+}

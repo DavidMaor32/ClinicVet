@@ -2,6 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build Windows",
+            "type": "process",
+            "command": "dotnet",
+            "args": ["build", "-f", "net8.0-windows10.0.19041.0"],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
             "label": "Run Mac",
             "type": "shell",
             "command": "dotnet build -t:Run -f net8.0-maccatalyst",
