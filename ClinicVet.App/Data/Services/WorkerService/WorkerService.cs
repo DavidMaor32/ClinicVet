@@ -26,7 +26,7 @@ public class WorkerService(AppDbContext context) : IWorkerService
         
         return worker!;
     }
-
+// code
     public async Task<Worker> AddAsync(Worker worker)
     {
         bool exists = await context.Workers.AnyAsync(w => w.Id == worker.Id);
