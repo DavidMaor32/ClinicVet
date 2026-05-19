@@ -1,8 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using ClinicVet.Data.Models;
 
-using System.CodeDom;
-
 namespace ClinicVet.Data.Repositories;
 
 public class WorkerRepository {

@@ -1,4 +1,5 @@
-﻿using ClinicVet.Data.Models;
+﻿using ClinicVet.Data.Enums;
+using ClinicVet.Data.Models;
 using ClinicVet.Data.Repositories;
 using ClinicVet.UI.Pages.WorkersPage;
 
@@ -20,6 +21,17 @@ public partial class Home : Form
         workersRepository = new WorkerRepository();
 
         btnWorkersPage.Click += (sender, e) => OpenForm(new WorkersPage(workersRepository));
+
+        // Add WorkersPage
+        // Add AnimalsPage
+
+        if (loggedUser.Role == Role.Vet.Value) { 
+            // add ClientsPage
+        }
+
+        if (loggedUser.Role == Role.Vet.Value) { 
+            // VisitsPage
+        }
     }
 
     private void OpenForm(Form form) {

@@ -9,7 +9,6 @@ public partial class Login : Form {
     private readonly WorkerRepository workerRepository;
     public Login() {
         InitializeComponent();
-
         workerRepository = new WorkerRepository();
     }
 

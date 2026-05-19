@@ -39,8 +39,11 @@ public static class DatabaseConfig
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name        TEXT NOT NULL,
                 AnimalType  TEXT NOT NULL,
-                Weight      TEXT,
-                OwnerId     INTEGER,
+                ChipSerial TEXT NOT NULL,
+                Weight      REAL NOT NULL,
+                OwnerId     INTEGER NOT NULL,
+                Birthdate TEXT NOT NULL,
+                LastVaccine TEXT DEFAULT NULL
                 FOREIGN KEY (OwnerId) REFERENCES Clients(_Id) ON DELETE CASCADE
             );",
 

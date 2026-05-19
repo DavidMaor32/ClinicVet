@@ -32,6 +32,7 @@ partial class Login
         btnLogin = new Button();
         togglePasswordVisible = new CheckBox();
         flowLayoutPanel1 = new FlowLayoutPanel();
+        label1 = new Label();
         flowLayoutPanel1.SuspendLayout();
         SuspendLayout();
         // 
@@ -90,17 +91,28 @@ partial class Login
         flowLayoutPanel1.Size = new Size(171, 160);
         flowLayoutPanel1.TabIndex = 4;
         // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Location = new Point(122, 22);
+        label1.Name = "label1";
+        label1.Size = new Size(286, 25);
+        label1.TabIndex = 5;
+        label1.Text = "default user: admin12@admin123!";
+        // 
         // Login
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(label1);
         Controls.Add(flowLayoutPanel1);
         Name = "Login";
         Text = "ClinicVet";
         flowLayoutPanel1.ResumeLayout(false);
         flowLayoutPanel1.PerformLayout();
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -110,4 +122,5 @@ partial class Login
     private Button btnLogin;
     private CheckBox togglePasswordVisible;
     private FlowLayoutPanel flowLayoutPanel1;
+    private Label label1;
 }

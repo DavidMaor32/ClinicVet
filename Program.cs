@@ -17,6 +17,6 @@ internal static class Program
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         DatabaseConfig.Initialize();
-        Application.Run(new Home(null));
+        Application.Run(new Login());
     }
 }
