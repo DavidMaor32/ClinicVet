@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../ClinicVet.Test/ClinicVet.Test.csproj" />
+  <Project Path="ClinicVet.csproj" />
+</Solution>
