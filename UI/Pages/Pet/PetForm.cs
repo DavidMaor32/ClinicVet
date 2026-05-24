@@ -3,20 +3,17 @@ using ClinicVet.Data.Repositories;
 
 namespace ClinicVet.Gui.Pages.Pet;
 
-public partial class PetForm : Form
-{
+public partial class PetForm : Form {
     private readonly AnimalsRepository animalsRepository;
 
-    public PetForm(AnimalsRepository animalsRepository)
-    {
+    public PetForm(AnimalsRepository animalsRepository) {
         this.animalsRepository = animalsRepository;
 
         InitializeComponent();
         InitComboBox();
     }
 
-    private void InitComboBox()
-    {
+    private void InitComboBox() {
 
         //טעינת שדות לקומבו-בוקס
         CBxPetType.Items.Add("dog");
@@ -25,11 +22,10 @@ public partial class PetForm : Form
         CBxPetType.Items.Add("bird");
     }
 
-   
 
 
-    private Boolean CheckPetType()
-    {
+
+    private Boolean CheckPetType() {
         //להודי לדוד שהשדות רק באותיות קטנות
         string x = CBxPetType.Text.Trim().ToLower();//המרה של קלט שהמשתמש כותב לקומבו -בוקס
         if (!CBxPetType.Items.Contains(x))//אם הערך המוקלד אינו שדה בקומבו-בוקס
@@ -41,13 +37,12 @@ public partial class PetForm : Form
         return true;
     }
 
-    private Boolean CheckPetName(string name)
-    {
+    private Boolean CheckPetName(string name) {
         /*{       מה בדקתי?
          * 1.אם לא הקלידו שם קופץ שגיאה
          * 2.אם לא הקלידו מחרוזת של אותיות
         */
-        if (name.Equals(""))   // (1)
+        if (string.IsNullOrEmpty(name))   // (1)
         {
             lblPetNameValid.Visible = true;
 
@@ -56,8 +51,7 @@ public partial class PetForm : Form
 
         foreach (char ch in name)  //  (2)
         {
-            if (!char.IsLetter(ch))
-            {
+            if (!char.IsLetter(ch)) {
                 lblPetNameValid.Visible = true;
 
                 return false;
@@ -68,8 +62,7 @@ public partial class PetForm : Form
         return true;
     }
 
-    private void btnFinishAddPet_Click(object sender, EventArgs e)
-    {
+    private void btnFinishAddPet_Click(object sender, EventArgs e) {
 
         //השיטה הזו נוחה לקריאה
         //bool validName = CheckPetName(TB_pet_name.Text);
@@ -87,28 +80,24 @@ public partial class PetForm : Form
         //}
 
         //---------השיטה הזו יעילה יותר מבחינת זמן ריצה כי מדובר בשרשור IF
-        if (CheckPetName(TB_pet_name.Text) && CheckPetType() &&
-            CheckPetWeight(TB_pet_weight.Text) && CheckBirthDate(Date_birth.Value) &&
-              CheckLatestVacc(Date_vac.Value, Date_birth.Value))
-        {
-            //DB staff 'add object ...
-        }
-        else {
+        if (!isFormValid()) {
             MessageBox.Show(
             "Please check the highlighted fields.",
             "Invalid Input",
             MessageBoxButtons.OK,
             MessageBoxIcon.Warning
             );
+
+            return;
         }
 
         Animal newAnimal = new Animal {
-            Name= TB_pet_name.Text,
-            Weight= double.Parse(TB_pet_weight.Text),
-            LastVaccine= DateOnly.FromDateTime(Date_vac.Value),
-            Birthdate= DateOnly.FromDateTime(Date_birth.Value),
-            AnimalType= CBxPetType.Text,
-            ChipSerial= "1", //TB_chip_serial.Text, //TODO: add validation for chip serial
+            Name = TB_pet_name.Text,
+            Weight = double.Parse(TB_pet_weight.Text),
+            LastVaccine = DateOnly.FromDateTime(Date_vac.Value),
+            Birthdate = DateOnly.FromDateTime(Date_birth.Value),
+            AnimalType = CBxPetType.Text,
+            ChipSerial = "1", //TB_chip_serial.Text, //TODO: add validation for chip serial
             OwnerId = 1 //TODO: change to actual owner id
         };
 
@@ -123,23 +112,25 @@ public partial class PetForm : Form
         }
     }
 
+    private bool isFormValid() {
+        return 
+            CheckPetName(TB_pet_name.Text) && 
+            CheckPetType() &&
+            CheckPetWeight(TB_pet_weight.Text) && 
+            CheckBirthDate(Date_birth.Value) &&
+            CheckLatestVacc(Date_vac.Value, Date_birth.Value);
+    }
 
-
-
-    private Boolean CheckPetWeight(string text)
-    {
-        double weight;
+    private bool CheckPetWeight(string text) {
 
         // בודק אם בכלל הוקלד מספר
-        if (!double.TryParse(text, out weight))
-        {
+        if (!double.TryParse(text, out double weight)) {
             X_weightVal.Visible = true;
             return false;
         }
 
         // בודק אם המספר בין 0.1 ל-100
-        if (weight < 0.1 || weight > 100)
-        {
+        if (weight < 0.1 || weight > 100) {
             X_weightVal.Visible = true;
             return false;
         }
@@ -149,17 +140,14 @@ public partial class PetForm : Form
     }
 
 
-    private bool CheckBirthDate(DateTime birthDate)
-    {
-        if (birthDate > DateTime.Now)
-        {
+    private bool CheckBirthDate(DateTime birthDate) {
+        if (birthDate > DateTime.Now) {
             X_birthDateVal.Visible = true;
             return false;
         }
 
         // לא מאפשר לפני שנת 2000
-        if (birthDate.Year < 2000)
-        {
+        if (birthDate.Year < 2000) {
             X_birthDateVal.Visible = true;
             return false;
         }
@@ -171,8 +159,7 @@ public partial class PetForm : Form
 
 
 
-    private bool CheckLatestVacc(DateTime LatestVac, DateTime birthDate)
-    {
+    private bool CheckLatestVacc(DateTime LatestVac, DateTime birthDate) {
         // MessageBox.Show("CheckLatestVacc entered");
 
         //לא סומן כפתור
@@ -209,28 +196,11 @@ public partial class PetForm : Form
         return false;
     }
 
-    private void radioButtonGotVaccine_CheckedChanged(object sender, EventArgs e)
-    {
+    private void radioButtonGotVaccine_CheckedChanged(object sender, EventArgs e) {
         Date_vac.Enabled = true;
     }
 
-    private void radioButtonNoVacc_CheckedChanged(object sender, EventArgs e)
-    {
+    private void radioButtonNoVacc_CheckedChanged(object sender, EventArgs e) {
         Date_vac.Enabled = false;
     }
-
-   
-
-   
-    
-
-   
-
-  
-
-    
-
-    
-
-   
 }
