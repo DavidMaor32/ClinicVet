@@ -1,9 +1,16 @@
-﻿namespace ClinicVet.Gui.Pages.Pet;
+﻿using ClinicVet.Data.Models;
+using ClinicVet.Data.Repositories;
+
+namespace ClinicVet.Gui.Pages.Pet;
 
 public partial class PetForm : Form
 {
-    public PetForm()
+    private readonly AnimalsRepository animalsRepository;
+
+    public PetForm(AnimalsRepository animalsRepository)
     {
+        this.animalsRepository = animalsRepository;
+
         InitializeComponent();
         InitComboBox();
     }
@@ -93,6 +100,26 @@ public partial class PetForm : Form
             MessageBoxButtons.OK,
             MessageBoxIcon.Warning
             );
+        }
+
+        Animal newAnimal = new Animal {
+            Name= TB_pet_name.Text,
+            Weight= double.Parse(TB_pet_weight.Text),
+            LastVaccine= DateOnly.FromDateTime(Date_vac.Value),
+            Birthdate= DateOnly.FromDateTime(Date_birth.Value),
+            AnimalType= CBxPetType.Text,
+            ChipSerial= "1", //TB_chip_serial.Text, //TODO: add validation for chip serial
+            OwnerId = 1 //TODO: change to actual owner id
+        };
+
+        string message = "Added successfully.";
+
+        try {
+            animalsRepository.Add(newAnimal);
+            MessageBox.Show(message);
+        }
+        catch (Exception ex) {
+            MessageBox.Show(ex.Message);
         }
     }
 

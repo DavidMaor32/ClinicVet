@@ -32,6 +32,10 @@ public class WorkerRepository {
 
     public void Add(Worker worker)
     {
+        if (IsUsernameTaken(worker.Username)) {
+            throw new Exception($"Username already taken.");
+        }
+
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
         connection.Open();
 
@@ -81,5 +85,9 @@ public class WorkerRepository {
             WorkerId = reader.GetString(5),
             Role = reader.GetString(6),
         };
+    }
+
+    private bool IsUsernameTaken(string username) {
+        return GetAll().Any(w => w.Username.Trim().Equals(username.Trim()));
     }
 }

@@ -1,4 +1,5 @@
-﻿using ClinicVet.Gui.Pages.Pet;
+﻿using ClinicVet.Data.Repositories;
+using ClinicVet.Gui.Pages.Pet;
 
 // ==****  עוד לא סיימתי עם הטופס הזה ואולי הוא ימחק , נשאר לממש פונקציונליות ולטל ב LIST BOX
 
@@ -6,20 +7,22 @@ namespace ClinicVet.Gui.Pages.PetCatalog;
 
 public partial class PetCatalogForm : Form
 {
-    public PetCatalogForm()
+    private readonly AnimalsRepository animalsRepository;
+
+    public PetCatalogForm(AnimalsRepository animalsRepository)
     {
+        this.animalsRepository = animalsRepository;
         InitializeComponent();
     }
 
     private void backBtn_Click(object sender, EventArgs e)
     {
-
         this.Close();
     }
 
     private void button1_Click(object sender, EventArgs e)
     {
-        PetForm petForm = new PetForm();
+        PetForm petForm = new PetForm(animalsRepository);
         petForm.ShowDialog();
     }
 

@@ -1,10 +1,10 @@
-﻿using ClinicVet.Data.Enums;
+﻿using Clinic.Gui.Pages.StaffDashboard;
+
+using ClinicVet.Data.Enums;
 using ClinicVet.Data.Models;
 using ClinicVet.Data.Repositories;
+using ClinicVet.UI.Pages.ClientsPage;
 using ClinicVet.UI.Pages.WorkersPage;
-
-using System.Data;
-using System.Security.Cryptography;
 
 namespace ClinicVet.Gui.Pages.Home;
 
@@ -12,6 +12,8 @@ public partial class Home : Form
 {
     private readonly Worker currentWorker;
     private readonly WorkerRepository workersRepository;
+    private readonly ClientsRepository clientsRepository;
+    private readonly AnimalsRepository animalsRepository;
 
     public Home(Worker loggedUser)
     {
@@ -19,24 +21,28 @@ public partial class Home : Form
 
         currentWorker = loggedUser;
         workersRepository = new WorkerRepository();
+        clientsRepository = new ClientsRepository();
+        animalsRepository = new AnimalsRepository();
 
-        btnWorkersPage.Click += (sender, e) => OpenForm(new WorkersPage(workersRepository));
+        btnWorkersPage.Click += CreateOpenFormHandler(new WorkersPage(workersRepository));
+        btnClientsPage.Click += CreateOpenFormHandler(new ClientsPage(clientsRepository, animalsRepository));
 
-        // Add WorkersPage
+        btnPetsManagement.Click += CreateOpenFormHandler(new staffDashboard(animalsRepository));
         // Add AnimalsPage
-
         if (loggedUser.Role == Role.Vet.Value) { 
             // add ClientsPage
         }
 
-        if (loggedUser.Role == Role.Vet.Value) { 
+        if (loggedUser.Role == Role.Secretary.Value) { 
             // VisitsPage
         }
     }
 
-    private void OpenForm(Form form) {
-        form.Show();
-        form.FormClosed += (sender, e) => this.Show();
-        this.Hide();
+    private EventHandler CreateOpenFormHandler(Form form) {
+        return (sender, e) => {
+            form.Show();
+            form.FormClosed += (sender, e) => this.Show();
+            this.Hide();
+        };
     }
 }

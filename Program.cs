@@ -1,7 +1,5 @@
 using ClinicVet.Data;
-using ClinicVet.Gui.Pages.Home;
 using ClinicVet.UI.Pages.Login;
-using ClinicVet.UI.Pages.WorkersPage;
 
 namespace ClinicVet;
 

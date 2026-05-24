@@ -4,11 +4,22 @@ namespace ClinicVet.Data;
 
 public static class DatabaseConfig
 {
+    private static string? _connectionString = null;
+
     private static readonly string DbPath = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
             "clinicvet.db"
         );
-    public static string ConnectionString => $"Data Source={DbPath}";
+
+    public static string ConnectionString =>_connectionString ?? $"Data Source={DbPath}";
+
+    public static void UseConnectionString(string connection) {
+        _connectionString = connection;
+    }
+
+    public static void ResetConnectionString() {
+        _connectionString = null;
+    }
 
     public static void Initialize()
     {
@@ -30,7 +41,7 @@ public static class DatabaseConfig
                 VALUES ('admin@clinicvet.com', '123456789', 'admin12', 'admin123!', '0000', 'VET');",
             @"CREATE TABLE IF NOT EXISTS Clients (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
-                Id          TEXT NOT NULL,
+                Id          TEXT NOT NULL UNIQUE,
                 FullName    TEXT NOT NULL,
                 Phone       TEXT,
                 Email       TEXT
@@ -39,11 +50,11 @@ public static class DatabaseConfig
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name        TEXT NOT NULL,
                 AnimalType  TEXT NOT NULL,
-                ChipSerial TEXT NOT NULL,
+                ChipSerial TEXT NOT NULL UNIQUE,
                 Weight      REAL NOT NULL,
                 OwnerId     INTEGER NOT NULL,
                 Birthdate TEXT NOT NULL,
-                LastVaccine TEXT DEFAULT NULL
+                LastVaccine TEXT DEFAULT NULL,
                 FOREIGN KEY (OwnerId) REFERENCES Clients(_Id) ON DELETE CASCADE
             );",
 

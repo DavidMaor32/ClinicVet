@@ -3,4 +3,4 @@
 [Bb]in/
 [Oo]bj/
 *.db
-*.sqlite
+*.sqlite(3?)

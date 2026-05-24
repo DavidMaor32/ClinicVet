@@ -1,22 +1,17 @@
-﻿using ClinicVet.Gui.Pages.Pet;
+﻿using ClinicVet.Data.Repositories;
+using ClinicVet.Gui.Pages.Pet;
 using ClinicVet.Gui.Pages.PetCatalog;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Clinic.Gui.Pages.StaffDashboard;
 
 public partial class staffDashboard : Form
 {
-    private List<Animal> animals = new List<Animal>();
-    public staffDashboard()
+    private readonly AnimalsRepository animalsRepository;
+
+    public staffDashboard(AnimalsRepository animalsRepository)
     {
+        this.animalsRepository = animalsRepository;
+
         InitializeComponent();
         InitSearchComboBox();
 
@@ -38,11 +33,11 @@ public partial class staffDashboard : Form
         //animals.Add(new Animal("Luna", "Cat", 4.2, "789101"));
 
         dgvPets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        dgvPets.DataSource = animals;
+        dgvPets.DataSource = animalsRepository.GetAll();
     }
     private void btnAddPet_Click(object sender, EventArgs e)
     {
-        PetForm petForm = new PetForm();
+        PetForm petForm = new PetForm(animalsRepository);
         petForm.ShowDialog();
     }
 
@@ -200,7 +195,7 @@ public partial class staffDashboard : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        PetCatalogForm petCatalogForm = new PetCatalogForm();
+        PetCatalogForm petCatalogForm = new PetCatalogForm(animalsRepository);
         petCatalogForm.ShowDialog();
     }
 

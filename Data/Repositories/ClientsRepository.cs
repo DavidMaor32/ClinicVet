@@ -17,7 +17,8 @@ public class ClientsRepository {
         command.CommandText = "SELECT _Id, Id, FullName, Phone, Email FROM Clients";
 
         if (!string.IsNullOrEmpty(searchTerm)) { 
-            command.CommandText += " WHERE Id LIKE $searchTerm OR Phone LIKE $searchTerm";
+            command.CommandText += " WHERE Id LIKE $searchTerm OR FullName LIKE $searchTerm OR Phone LIKE $searchTerm";
+            command.Parameters.AddWithValue("$searchTerm", $"%{searchTerm}%");
         }
         
         using var reader = command.ExecuteReader();
@@ -45,7 +46,7 @@ public class ClientsRepository {
         using var reader = command.ExecuteReader();
 
         if (!reader.Read()) {
-            throw new Exception($"couldn't find User with id '{id}'");
+            throw new Exception($"couldn't find client with id '{id}'");
         }
 
         return new Client
