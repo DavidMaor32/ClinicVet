@@ -61,6 +61,10 @@ public class ClientsRepository {
 
     public void Add(Client client)
     {
+        if (IsIdTaken(client.Id)) {
+            throw new Exception($"already exists client with id '{client.Id}'");
+        }
+
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
         connection.Open();
         var command = connection.CreateCommand();
@@ -81,5 +85,9 @@ public class ClientsRepository {
         command.CommandText = "DELETE FROM Clients WHERE Id = $id";
         command.Parameters.AddWithValue("$id", id);
         command.ExecuteNonQuery();
+    }
+
+    private bool IsIdTaken(string id) {
+        return GetAll().Any(c => c.Id.Equals(id));
     }
 }

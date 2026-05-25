@@ -16,4 +16,10 @@
     <Folder Include="UI\Pages\PetCatalog\" />
   </ItemGroup>
 
+	<Target Name="CleanDatabaseFiles" AfterTargets="AfterClean">
+		<ItemGroup>
+			<FilesToDelete Include="$(TargetDir)*.db" />
+		</ItemGroup>
+		<Delete Files="@(FilesToDelete)" TreatErrorsAsWarnings="true" />
+	</Target>
 </Project>

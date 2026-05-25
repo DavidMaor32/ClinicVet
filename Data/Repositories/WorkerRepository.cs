@@ -33,7 +33,15 @@ public class WorkerRepository {
     public void Add(Worker worker)
     {
         if (IsUsernameTaken(worker.Username)) {
-            throw new Exception($"Username already taken.");
+            throw new Exception($"Username '{worker.Username}' already taken.");
+        }
+
+        if (IsIdTaken(worker.Id)) {
+            throw new Exception($"already exists worker with id {worker.Id}");
+        }
+
+        if (IsWorkerIdTaken(worker.WorkerId)) {
+            throw new Exception($"already exists worker with workerId '{worker.WorkerId}'");
         }
 
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
@@ -89,5 +97,13 @@ public class WorkerRepository {
 
     private bool IsUsernameTaken(string username) {
         return GetAll().Any(w => w.Username.Trim().Equals(username.Trim()));
+    }
+
+    private bool IsIdTaken(string id) {
+        return GetAll().Any(w => w.Id.Trim().Equals(id.Trim()));
+    }
+
+    private bool IsWorkerIdTaken(string workerId) {
+        return GetAll().Any(w => w.WorkerId.Trim().Equals(workerId.Trim()));
     }
 }

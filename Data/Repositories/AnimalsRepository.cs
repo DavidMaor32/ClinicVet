@@ -7,6 +7,7 @@ public class AnimalsRepository
     public List<Animal> GetAll() {
         return GetAll(null);
     }
+
     public List<Animal> GetAll(string? ownerId)
     {
         var animals = new List<Animal>();
@@ -68,6 +69,10 @@ public class AnimalsRepository
         };
     }
 
+    public List<Animal> GetByOwnerId(string ownerId) {
+        return GetAll().Where(a => a.OwnerId.Equals(ownerId)).ToList();
+    }
+
     public Animal GetById(int id)
     {
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
@@ -95,6 +100,18 @@ public class AnimalsRepository
 
     public void Add(Animal animal)
     {
+        ClientsRepository clients = new ClientsRepository();
+
+        bool isOwnerIdExists = clients.GetAll().Any(c => c.Id.Equals(animal.OwnerId));
+
+        if (!isOwnerIdExists) {
+            throw new Exception($"Could not find client with id '{animal.OwnerId}'");
+        }
+
+        if (GetAll().Any(a => a.ChipSerial.Equals(animal.ChipSerial))) {
+            throw new Exception($"Already exists animal with chip serial '{animal.ChipSerial}'");
+        }
+
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
         connection.Open();
         var command = connection.CreateCommand();

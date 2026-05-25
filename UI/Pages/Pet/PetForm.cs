@@ -49,17 +49,11 @@ public partial class PetForm : Form {
             return false;
         }
 
-        foreach (char ch in name)  //  (2)
-        {
-            if (!char.IsLetter(ch)) {
-                lblPetNameValid.Visible = true;
+        bool isOnlyLetters = name.All(char.IsLetter);
 
-                return false;
-            }
-        }
+        lblPetNameValid.Visible = !isOnlyLetters;
 
-        lblPetNameValid.Visible = false;
-        return true;
+        return isOnlyLetters;
     }
 
     private void btnFinishAddPet_Click(object sender, EventArgs e) {
@@ -105,18 +99,21 @@ public partial class PetForm : Form {
 
         try {
             animalsRepository.Add(newAnimal);
-            MessageBox.Show(message);
         }
         catch (Exception ex) {
-            MessageBox.Show(ex.Message);
+            message = ex.Message;
         }
+        finally {
+            _ = MessageBox.Show(message);
+        }
+
     }
 
     private bool isFormValid() {
-        return 
-            CheckPetName(TB_pet_name.Text) && 
+        return
+            CheckPetName(TB_pet_name.Text) &&
             CheckPetType() &&
-            CheckPetWeight(TB_pet_weight.Text) && 
+            CheckPetWeight(TB_pet_weight.Text) &&
             CheckBirthDate(Date_birth.Value) &&
             CheckLatestVacc(Date_vac.Value, Date_birth.Value);
     }
@@ -202,5 +199,9 @@ public partial class PetForm : Form {
 
     private void radioButtonNoVacc_CheckedChanged(object sender, EventArgs e) {
         Date_vac.Enabled = false;
+    }
+
+    private void TB_chipSerial_TextChanged(object sender, EventArgs e) {
+
     }
 }

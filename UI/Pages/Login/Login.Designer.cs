@@ -94,11 +94,11 @@ partial class Login
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(122, 22);
+        label1.Location = new Point(297, 9);
         label1.Name = "label1";
-        label1.Size = new Size(286, 25);
+        label1.Size = new Size(178, 75);
         label1.TabIndex = 5;
-        label1.Text = "default user: admin12@admin123!";
+        label1.Text = "default user\r\nusername: admin12\r\npassword:admin123!\r\n";
         // 
         // Login
         // 

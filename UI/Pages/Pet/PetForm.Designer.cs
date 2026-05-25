@@ -26,8 +26,7 @@ partial class PetForm
     /// Required method for Designer support - do not modify
     /// the contents of this method with the code editor.
     /// </summary>
-    private void InitializeComponent()
-    {
+    private void InitializeComponent() {
         Lbl1 = new Label();
         TB_pet_name = new TextBox();
         lblBx = new Label();
@@ -50,6 +49,9 @@ partial class PetForm
         X_vaccineVal = new Label();
         radioButtonGotVaccine = new RadioButton();
         radioButtonNoVacc = new RadioButton();
+        X_chipSerial = new Label();
+        TB_chipSerial = new TextBox();
+        label3 = new Label();
         SuspendLayout();
         // 
         // Lbl1
@@ -58,27 +60,30 @@ partial class PetForm
         Lbl1.BackColor = SystemColors.ActiveCaption;
         Lbl1.BorderStyle = BorderStyle.Fixed3D;
         Lbl1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        Lbl1.Location = new Point(10, 18);
+        Lbl1.Location = new Point(12, 22);
+        Lbl1.Margin = new Padding(4, 0, 4, 0);
         Lbl1.Name = "Lbl1";
-        Lbl1.Size = new Size(109, 27);
+        Lbl1.Size = new Size(130, 32);
         Lbl1.TabIndex = 0;
         Lbl1.Text = "Pet details:";
         // 
         // TB_pet_name
         // 
         TB_pet_name.ForeColor = SystemColors.WindowText;
-        TB_pet_name.Location = new Point(139, 64);
+        TB_pet_name.Location = new Point(174, 80);
+        TB_pet_name.Margin = new Padding(4);
         TB_pet_name.Name = "TB_pet_name";
-        TB_pet_name.Size = new Size(125, 27);
+        TB_pet_name.Size = new Size(155, 31);
         TB_pet_name.TabIndex = 1;
         // 
         // lblBx
         // 
         lblBx.AutoSize = true;
         lblBx.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        lblBx.Location = new Point(10, 64);
+        lblBx.Location = new Point(12, 80);
+        lblBx.Margin = new Padding(4, 0, 4, 0);
         lblBx.Name = "lblBx";
-        lblBx.Size = new Size(124, 20);
+        lblBx.Size = new Size(152, 25);
         lblBx.TabIndex = 2;
         lblBx.Text = "Enter pet name: ";
         // 
@@ -86,26 +91,29 @@ partial class PetForm
         // 
         lblPetType.AutoSize = true;
         lblPetType.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        lblPetType.Location = new Point(12, 120);
+        lblPetType.Location = new Point(12, 146);
+        lblPetType.Margin = new Padding(4, 0, 4, 0);
         lblPetType.Name = "lblPetType";
-        lblPetType.Size = new Size(116, 20);
+        lblPetType.Size = new Size(144, 25);
         lblPetType.TabIndex = 3;
         lblPetType.Text = "Check pet type:";
         // 
         // TB_pet_weight
         // 
-        TB_pet_weight.Location = new Point(142, 174);
+        TB_pet_weight.Location = new Point(178, 218);
+        TB_pet_weight.Margin = new Padding(4);
         TB_pet_weight.Name = "TB_pet_weight";
-        TB_pet_weight.Size = new Size(125, 27);
+        TB_pet_weight.Size = new Size(155, 31);
         TB_pet_weight.TabIndex = 8;
         // 
         // lblWeight
         // 
         lblWeight.AutoSize = true;
         lblWeight.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        lblWeight.Location = new Point(11, 177);
+        lblWeight.Location = new Point(12, 218);
+        lblWeight.Margin = new Padding(4, 0, 4, 0);
         lblWeight.Name = "lblWeight";
-        lblWeight.Size = new Size(133, 20);
+        lblWeight.Size = new Size(163, 25);
         lblWeight.TabIndex = 9;
         lblWeight.Text = "Enter pet weight: ";
         // 
@@ -113,17 +121,19 @@ partial class PetForm
         // 
         lblPetBirth.AutoSize = true;
         lblPetBirth.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        lblPetBirth.Location = new Point(11, 237);
+        lblPetBirth.Location = new Point(12, 296);
+        lblPetBirth.Margin = new Padding(4, 0, 4, 0);
         lblPetBirth.Name = "lblPetBirth";
-        lblPetBirth.Size = new Size(107, 20);
+        lblPetBirth.Size = new Size(132, 25);
         lblPetBirth.TabIndex = 10;
         lblPetBirth.Text = "Date of birth: ";
         // 
         // Date_birth
         // 
-        Date_birth.Location = new Point(121, 237);
+        Date_birth.Location = new Point(151, 296);
+        Date_birth.Margin = new Padding(4);
         Date_birth.Name = "Date_birth";
-        Date_birth.Size = new Size(250, 27);
+        Date_birth.Size = new Size(312, 31);
         Date_birth.TabIndex = 11;
         Date_birth.Value = new DateTime(1999, 5, 10, 22, 51, 0, 0);
         // 
@@ -131,9 +141,10 @@ partial class PetForm
         // 
         lblOwner.AutoSize = true;
         lblOwner.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        lblOwner.Location = new Point(10, 292);
+        lblOwner.Location = new Point(12, 393);
+        lblOwner.Margin = new Padding(4, 0, 4, 0);
         lblOwner.Name = "lblOwner";
-        lblOwner.Size = new Size(101, 20);
+        lblOwner.Size = new Size(124, 25);
         lblOwner.TabIndex = 12;
         lblOwner.Text = "Enter Owner:";
         // 
@@ -141,25 +152,28 @@ partial class PetForm
         // 
         label1.AutoSize = true;
         label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        label1.Location = new Point(11, 360);
+        label1.Location = new Point(14, 450);
+        label1.Margin = new Padding(4, 0, 4, 0);
         label1.Name = "label1";
-        label1.Size = new Size(111, 20);
+        label1.Size = new Size(137, 25);
         label1.TabIndex = 13;
         label1.Text = "Latest vaccine:";
         // 
         // TB_owner
         // 
-        TB_owner.Location = new Point(121, 292);
+        TB_owner.Location = new Point(154, 393);
+        TB_owner.Margin = new Padding(4);
         TB_owner.Name = "TB_owner";
-        TB_owner.Size = new Size(125, 27);
+        TB_owner.Size = new Size(155, 31);
         TB_owner.TabIndex = 14;
         // 
         // Date_vac
         // 
         Date_vac.Enabled = false;
-        Date_vac.Location = new Point(436, 360);
+        Date_vac.Location = new Point(545, 450);
+        Date_vac.Margin = new Padding(4);
         Date_vac.Name = "Date_vac";
-        Date_vac.Size = new Size(250, 27);
+        Date_vac.Size = new Size(312, 31);
         Date_vac.TabIndex = 15;
         Date_vac.Value = new DateTime(1999, 5, 10, 22, 51, 0, 0);
         // 
@@ -167,9 +181,10 @@ partial class PetForm
         // 
         btnFinishAddPet.BackColor = SystemColors.ActiveCaption;
         btnFinishAddPet.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        btnFinishAddPet.Location = new Point(696, 422);
+        btnFinishAddPet.Location = new Point(870, 528);
+        btnFinishAddPet.Margin = new Padding(4);
         btnFinishAddPet.Name = "btnFinishAddPet";
-        btnFinishAddPet.Size = new Size(94, 29);
+        btnFinishAddPet.Size = new Size(118, 36);
         btnFinishAddPet.TabIndex = 18;
         btnFinishAddPet.Text = "Check";
         btnFinishAddPet.UseVisualStyleBackColor = false;
@@ -180,9 +195,10 @@ partial class PetForm
         lblPetNameValid.AutoSize = true;
         lblPetNameValid.Font = new Font("Segoe UI", 11F);
         lblPetNameValid.ForeColor = Color.Firebrick;
-        lblPetNameValid.Location = new Point(309, 66);
+        lblPetNameValid.Location = new Point(337, 79);
+        lblPetNameValid.Margin = new Padding(4, 0, 4, 0);
         lblPetNameValid.Name = "lblPetNameValid";
-        lblPetNameValid.Size = new Size(23, 25);
+        lblPetNameValid.Size = new Size(26, 30);
         lblPetNameValid.TabIndex = 19;
         lblPetNameValid.Text = "X";
         lblPetNameValid.Visible = false;
@@ -190,9 +206,10 @@ partial class PetForm
         // CBxPetType
         // 
         CBxPetType.FormattingEnabled = true;
-        CBxPetType.Location = new Point(137, 117);
+        CBxPetType.Location = new Point(171, 146);
+        CBxPetType.Margin = new Padding(4);
         CBxPetType.Name = "CBxPetType";
-        CBxPetType.Size = new Size(151, 28);
+        CBxPetType.Size = new Size(188, 33);
         CBxPetType.TabIndex = 20;
         // 
         // lblPetTaype
@@ -200,9 +217,10 @@ partial class PetForm
         lblPetTaype.AutoSize = true;
         lblPetTaype.Font = new Font("Segoe UI", 11F);
         lblPetTaype.ForeColor = Color.Firebrick;
-        lblPetTaype.Location = new Point(326, 120);
+        lblPetTaype.Location = new Point(367, 145);
+        lblPetTaype.Margin = new Padding(4, 0, 4, 0);
         lblPetTaype.Name = "lblPetTaype";
-        lblPetTaype.Size = new Size(23, 25);
+        lblPetTaype.Size = new Size(26, 30);
         lblPetTaype.TabIndex = 21;
         lblPetTaype.Text = "X";
         lblPetTaype.Visible = false;
@@ -212,9 +230,10 @@ partial class PetForm
         X_weightVal.AutoSize = true;
         X_weightVal.Font = new Font("Segoe UI", 11F);
         X_weightVal.ForeColor = Color.Firebrick;
-        X_weightVal.Location = new Point(309, 177);
+        X_weightVal.Location = new Point(341, 217);
+        X_weightVal.Margin = new Padding(4, 0, 4, 0);
         X_weightVal.Name = "X_weightVal";
-        X_weightVal.Size = new Size(23, 25);
+        X_weightVal.Size = new Size(26, 30);
         X_weightVal.TabIndex = 22;
         X_weightVal.Text = "X";
         X_weightVal.Visible = false;
@@ -224,9 +243,10 @@ partial class PetForm
         X_birthDateVal.AutoSize = true;
         X_birthDateVal.Font = new Font("Segoe UI", 11F);
         X_birthDateVal.ForeColor = Color.Firebrick;
-        X_birthDateVal.Location = new Point(410, 238);
+        X_birthDateVal.Location = new Point(471, 291);
+        X_birthDateVal.Margin = new Padding(4, 0, 4, 0);
         X_birthDateVal.Name = "X_birthDateVal";
-        X_birthDateVal.Size = new Size(23, 25);
+        X_birthDateVal.Size = new Size(26, 30);
         X_birthDateVal.TabIndex = 23;
         X_birthDateVal.Text = "X";
         X_birthDateVal.Visible = false;
@@ -236,9 +256,10 @@ partial class PetForm
         X_ownerVal.AutoSize = true;
         X_ownerVal.Font = new Font("Segoe UI", 11F);
         X_ownerVal.ForeColor = Color.Firebrick;
-        X_ownerVal.Location = new Point(280, 294);
+        X_ownerVal.Location = new Point(353, 396);
+        X_ownerVal.Margin = new Padding(4, 0, 4, 0);
         X_ownerVal.Name = "X_ownerVal";
-        X_ownerVal.Size = new Size(23, 25);
+        X_ownerVal.Size = new Size(26, 30);
         X_ownerVal.TabIndex = 24;
         X_ownerVal.Text = "X";
         X_ownerVal.Visible = false;
@@ -248,9 +269,10 @@ partial class PetForm
         X_vaccineVal.AutoSize = true;
         X_vaccineVal.Font = new Font("Segoe UI", 11F);
         X_vaccineVal.ForeColor = Color.Firebrick;
-        X_vaccineVal.Location = new Point(721, 359);
+        X_vaccineVal.Location = new Point(901, 449);
+        X_vaccineVal.Margin = new Padding(4, 0, 4, 0);
         X_vaccineVal.Name = "X_vaccineVal";
-        X_vaccineVal.Size = new Size(23, 25);
+        X_vaccineVal.Size = new Size(26, 30);
         X_vaccineVal.TabIndex = 25;
         X_vaccineVal.Text = "X";
         X_vaccineVal.Visible = false;
@@ -258,9 +280,10 @@ partial class PetForm
         // radioButtonGotVaccine
         // 
         radioButtonGotVaccine.AutoSize = true;
-        radioButtonGotVaccine.Location = new Point(351, 361);
+        radioButtonGotVaccine.Location = new Point(439, 451);
+        radioButtonGotVaccine.Margin = new Padding(4);
         radioButtonGotVaccine.Name = "radioButtonGotVaccine";
-        radioButtonGotVaccine.Size = new Size(64, 24);
+        radioButtonGotVaccine.Size = new Size(77, 29);
         radioButtonGotVaccine.TabIndex = 27;
         radioButtonGotVaccine.TabStop = true;
         radioButtonGotVaccine.Text = "Have";
@@ -270,20 +293,57 @@ partial class PetForm
         // radioButtonNoVacc
         // 
         radioButtonNoVacc.AutoSize = true;
-        radioButtonNoVacc.Location = new Point(137, 361);
+        radioButtonNoVacc.Location = new Point(171, 451);
+        radioButtonNoVacc.Margin = new Padding(4);
         radioButtonNoVacc.Name = "radioButtonNoVacc";
-        radioButtonNoVacc.Size = new Size(181, 24);
+        radioButtonNoVacc.Size = new Size(215, 29);
         radioButtonNoVacc.TabIndex = 28;
         radioButtonNoVacc.TabStop = true;
         radioButtonNoVacc.Text = "Never been vaccinated";
         radioButtonNoVacc.UseVisualStyleBackColor = true;
         radioButtonNoVacc.CheckedChanged += radioButtonNoVacc_CheckedChanged;
         // 
+        // X_chipSerial
+        // 
+        X_chipSerial.AutoSize = true;
+        X_chipSerial.Font = new Font("Segoe UI", 11F);
+        X_chipSerial.ForeColor = Color.Firebrick;
+        X_chipSerial.Location = new Point(341, 347);
+        X_chipSerial.Margin = new Padding(4, 0, 4, 0);
+        X_chipSerial.Name = "X_chipSerial";
+        X_chipSerial.Size = new Size(26, 30);
+        X_chipSerial.TabIndex = 31;
+        X_chipSerial.Text = "X";
+        X_chipSerial.Visible = false;
+        // 
+        // TB_chipSerial
+        // 
+        TB_chipSerial.Location = new Point(178, 348);
+        TB_chipSerial.Margin = new Padding(4);
+        TB_chipSerial.Name = "TB_chipSerial";
+        TB_chipSerial.Size = new Size(155, 31);
+        TB_chipSerial.TabIndex = 30;
+        TB_chipSerial.TextChanged += TB_chipSerial_TextChanged;
+        // 
+        // label3
+        // 
+        label3.AutoSize = true;
+        label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        label3.Location = new Point(12, 351);
+        label3.Margin = new Padding(4, 0, 4, 0);
+        label3.Name = "label3";
+        label3.Size = new Size(157, 25);
+        label3.TabIndex = 29;
+        label3.Text = "Enter Chip Serial:";
+        // 
         // PetForm
         // 
-        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(802, 463);
+        ClientSize = new Size(1002, 579);
+        Controls.Add(X_chipSerial);
+        Controls.Add(TB_chipSerial);
+        Controls.Add(label3);
         Controls.Add(radioButtonNoVacc);
         Controls.Add(radioButtonGotVaccine);
         Controls.Add(X_vaccineVal);
@@ -306,6 +366,7 @@ partial class PetForm
         Controls.Add(lblBx);
         Controls.Add(TB_pet_name);
         Controls.Add(Lbl1);
+        Margin = new Padding(4);
         Name = "PetForm";
         Text = " ";
         ResumeLayout(false);
@@ -336,4 +397,7 @@ partial class PetForm
     private Label X_vaccineVal;
     private RadioButton radioButtonGotVaccine;
     private RadioButton radioButtonNoVacc;
+    private Label X_chipSerial;
+    private TextBox TB_chipSerial;
+    private Label label3;
 }

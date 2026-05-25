@@ -50,12 +50,27 @@ public static class DatabaseConfig
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name        TEXT NOT NULL,
                 AnimalType  TEXT NOT NULL,
-                ChipSerial TEXT NOT NULL UNIQUE,
+                ChipSerial  TEXT NOT NULL UNIQUE,
                 Weight      REAL NOT NULL,
                 OwnerId     INTEGER NOT NULL,
                 Birthdate TEXT NOT NULL,
                 LastVaccine TEXT DEFAULT NULL,
                 FOREIGN KEY (OwnerId) REFERENCES Clients(_Id) ON DELETE CASCADE
+            );",
+            @"CREATE TABLE IF NOT EXISTS Medicine (
+                _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                Name        TEXT NOT NULL UNIQUE,
+                Quantity    INTEGER DEFAULT 0 CHECK(Quantity >= 0),
+                Price       REAL NOT NULL
+            );",
+            @"CREATE TABLE IF NOT EXISTS Visits (
+                _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                Reason      TEXT NOT NULL,
+                DateTime    TEXT NOT NULL,
+                Diagnosis   TEXT NOT NULL,
+                VetWorkerId TEXT NOT NULL,
+                Prescriptions TEXT NOT NULL CHECK(json_valid(Prescriptions)),
+                FOREIGN KEY (VetWorkerId) REFERENCES Workers(WorkerId) ON DELETE CASCADE
             );",
 
         };

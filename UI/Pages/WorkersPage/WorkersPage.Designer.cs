@@ -134,6 +134,7 @@ partial class WorkersPage {
         inputRole.Name = "inputRole";
         inputRole.Size = new Size(212, 33);
         inputRole.TabIndex = 5;
+        inputRole.Text = "Role";
         // 
         // btnHome
         // 
@@ -175,6 +176,6 @@ partial class WorkersPage {
     private TextBox inputWorkId;
     private TextBox inputId;
     private TextBox inputEmail;
-    private ComboBox inputRole;
     private Button btnHome;
+    public ComboBox inputRole;
 }
