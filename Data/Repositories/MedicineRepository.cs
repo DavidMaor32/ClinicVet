@@ -202,5 +202,32 @@ public class MedicineRepository {
         }
     }
 
+    public void Update(string originalName, Medicine updatedMedicine)
+    {
+        using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+
+        command.CommandText = @"
+                    UPDATE Medicine
+                    SET Name = $newName,
+                        Quantity = $quantity,
+                        Price = $price
+                    WHERE Name = $originalName;";
+
+        command.Parameters.AddWithValue("$newName", updatedMedicine.Name);
+        command.Parameters.AddWithValue("$quantity", updatedMedicine.Quantity);
+        command.Parameters.AddWithValue("$price", updatedMedicine.Price);
+        command.Parameters.AddWithValue("$originalName", originalName);
+
+        int rowsAffected = command.ExecuteNonQuery();
+
+        if (rowsAffected == 0)
+        {
+            throw new Exception("Medicine not found");
+        }
+    }
+
 }
 

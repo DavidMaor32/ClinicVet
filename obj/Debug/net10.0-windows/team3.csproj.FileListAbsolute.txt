@@ -44,3 +44,5 @@ C:\Users\klimk\source\repos\team3\team3\bin\Debug\net10.0-windows\runtimes\win-a
 C:\Users\klimk\source\repos\team3\team3\bin\Debug\net10.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\klimk\source\repos\team3\team3\bin\Debug\net10.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\klimk\source\repos\team3\team3\obj\Debug\net10.0-windows\team3.csproj.Up2Date
+C:\Users\klimk\source\repos\team3\team3\obj\Debug\net10.0-windows\team3.MedicinieManagement.resources
+C:\Users\klimk\source\repos\team3\team3\obj\Debug\net10.0-windows\team3.sourcelink.json

@@ -15,6 +15,7 @@ namespace team3
             ApplicationConfiguration.Initialize();
             DatabaseConfig.Initialize();
             Application.Run(new OpenVisit());
+            Application.Run(new MedicinieManagement());
         }
     }
 }
