@@ -340,6 +340,8 @@ partial class PetForm
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
+        BackgroundImage = global::ClinicVet.Properties.Resources.petForm;
+        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(1002, 579);
         Controls.Add(X_chipSerial);
         Controls.Add(TB_chipSerial);
@@ -366,6 +368,7 @@ partial class PetForm
         Controls.Add(lblBx);
         Controls.Add(TB_pet_name);
         Controls.Add(Lbl1);
+        DoubleBuffered = true;
         Margin = new Padding(4);
         Name = "PetForm";
         Text = " ";

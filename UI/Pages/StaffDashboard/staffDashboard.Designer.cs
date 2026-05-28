@@ -201,12 +201,15 @@ partial class staffDashboard
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
+        BackgroundImage = global::ClinicVet.Properties.Resources.dash;
+        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(960, 653);
         Controls.Add(label4);
         Controls.Add(dgvPets);
         Controls.Add(panel1);
         Controls.Add(btnAddPet);
         Controls.Add(label1);
+        DoubleBuffered = true;
         Name = "staffDashboard";
         Text = "staffDashboard";
         panel1.ResumeLayout(false);
