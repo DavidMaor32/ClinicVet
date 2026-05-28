@@ -12,10 +12,6 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UI\Pages\PetCatalog\" />
-  </ItemGroup>
-
 	<Target Name="CleanDatabaseFiles" AfterTargets="AfterClean">
 		<ItemGroup>
 			<FilesToDelete Include="$(TargetDir)*.db" />

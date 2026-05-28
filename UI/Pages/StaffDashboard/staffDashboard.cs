@@ -1,7 +1,6 @@
 using ClinicVet.Data.Models;
 using ClinicVet.Data.Repositories;
 using ClinicVet.Gui.Pages.Pet;
-using ClinicVet.Gui.Pages.PetCatalog;
 
 namespace Clinic.Gui.Pages.StaffDashboard;
 
@@ -201,12 +200,6 @@ public partial class staffDashboard : Form
                 MessageBoxIcon.Warning
             );
         }
-    }
-
-    private void button1_Click(object sender, EventArgs e)
-    {
-        PetCatalogForm petCatalogForm = new PetCatalogForm(animalsRepository);
-        petCatalogForm.ShowDialog();
     }
 
     private void DgvPets_CellContentClick(object sender, DataGridViewCellEventArgs e)

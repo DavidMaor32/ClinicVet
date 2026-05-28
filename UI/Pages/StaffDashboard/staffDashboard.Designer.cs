@@ -36,7 +36,6 @@ partial class staffDashboard
         comboBoxSearch = new ComboBox();
         label2 = new Label();
         label3 = new Label();
-        button1 = new Button();
         panel1 = new Panel();
         dgvPets = new DataGridView();
         nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -117,18 +116,6 @@ partial class staffDashboard
         label3.Size = new Size(86, 20);
         label3.TabIndex = 7;
         label3.Text = "Search pet:";
-        // 
-        // button1
-        // 
-        button1.BackColor = SystemColors.ActiveCaption;
-        button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        button1.Location = new Point(27, 331);
-        button1.Name = "button1";
-        button1.Size = new Size(143, 72);
-        button1.TabIndex = 8;
-        button1.Text = "Pet catalog";
-        button1.UseVisualStyleBackColor = false;
-        button1.Click += button1_Click;
         // 
         // panel1
         // 
@@ -218,7 +205,6 @@ partial class staffDashboard
         Controls.Add(label4);
         Controls.Add(dgvPets);
         Controls.Add(panel1);
-        Controls.Add(button1);
         Controls.Add(btnAddPet);
         Controls.Add(label1);
         Name = "staffDashboard";
@@ -240,7 +226,6 @@ partial class staffDashboard
     private ComboBox comboBoxSearch;
     private Label label2;
     private Label label3;
-    private Button button1;
     private Panel panel1;
     private DataGridView dgvPets;
     private BindingSource animalBindingSource;
