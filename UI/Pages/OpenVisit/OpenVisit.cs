@@ -6,16 +6,16 @@ namespace ClinicVet.UI.Pages.OpenVisit;
 
 public partial class OpenVisit : Form
 {
-
+    private readonly AnimalsRepository animalsRepository;
     private readonly MedicineRepository medicineRepository;
     private readonly List<PrescribedMedicine> selectedMedicines;
 
-    public OpenVisit(MedicineRepository medicineRepository)
+    public OpenVisit(MedicineRepository medicineRepository, AnimalsRepository animalsRepository)
     {
         InitializeComponent();
 
+        this.animalsRepository = animalsRepository;
         this.medicineRepository = medicineRepository;
-
         selectedMedicines = new List<PrescribedMedicine>();
 
         LoadMedicines();

@@ -33,7 +33,7 @@ public partial class Home : Form
         btnClientsPage.Click += CreateOpenFormHandler(new ClientsPage(clientsRepository, animalsRepository));
 
         btnPetsManagement.Click += CreateOpenFormHandler(new staffDashboard(animalsRepository));
-        btnVisitsPage.Click += CreateOpenFormHandler(new OpenVisit(medicineRepository));
+        btnVisitsPage.Click += CreateOpenFormHandler(new OpenVisit(medicineRepository, animalsRepository));
         btnMedicinePage.Click += CreateOpenFormHandler(new MedicineManagementPage(medicineRepository));
         // Add AnimalsPage
         if (loggedUser.Role == Role.Vet.Value) { 
