@@ -20,13 +20,33 @@ public partial class PetForm : Form
         InitializeComponent();
         InitializeInputs();
 
+        catalog.DataSource = animalTypes;
         CBxPetType.DataSource = animalTypes;
         LoadAnimalTypes();
-
+        MakeInvisibleButton(btnFinishAddPet);
+        MakeInvisibleButton(deleteBtn);
+        MakeInvisibleButton(addAnimalBtn);
         CBxPetType.DropDownStyle = ComboBoxStyle.DropDown;
         CBxPetType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         CBxPetType.AutoCompleteSource = AutoCompleteSource.ListItems;
     }
+
+    private void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+
 
     private void InitializeInputs()
     {
@@ -34,9 +54,6 @@ public partial class PetForm : Form
         TB_pet_weight.PlaceholderText = "Weight must be between 0.1 and 100 kg";
         TB_owner.PlaceholderText = "9 digit owner ID";
 
-        TB_chipSerial.Visible = false;
-        X_chipSerial.Visible = false;
-        label3.Visible = false;
     }
 
     private void LoadAnimalTypes()
@@ -73,6 +90,11 @@ public partial class PetForm : Form
 
         lblPetNameValid.Visible = !isOnlyLetters;
         return isOnlyLetters;
+    }
+
+    private bool IsOnlyLetters(string value)
+    {
+        return value.All(char.IsLetter);
     }
 
     private bool CheckOwnerId(string ownerId)
@@ -219,5 +241,119 @@ public partial class PetForm : Form
 
     private void TB_chipSerial_TextChanged(object sender, EventArgs e)
     {
+    }
+
+    private void X_chipSerial_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void deleteBtn_Click(object sender, EventArgs e)
+    {
+        if (catalog.SelectedItem == null)
+        {
+            MessageBox.Show(
+                "you must choose an animal type to delete",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
+        string selectedTypeName = catalog.SelectedItem.ToString() ?? string.Empty;
+
+        DialogResult result = MessageBox.Show(
+            $"Are you sure you want to delete '{selectedTypeName}'?",
+            "Confirm Delete",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        );
+
+        if (result != DialogResult.Yes)
+        {
+            return;
+        }
+
+        try
+        {
+            animalTypesRepository.Delete(selectedTypeName);
+            LoadAnimalTypes();
+
+            MessageBox.Show(
+                "Animal type deleted successfully.",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                ex.Message,
+                "Delete Failed",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+        }
+    }
+
+    private void addAnimalBtn_Click(object sender, EventArgs e)
+    {
+        addTxtBx.Enabled = true;
+        addTxtBx.Visible = true;
+
+        DoneBtn.Enabled = true;
+        DoneBtn.Visible = true;
+    }
+
+    private void DoneBtn_Click(object sender, EventArgs e)
+    {
+        string newTypeName = addTxtBx.Text.Trim();
+
+        if (string.IsNullOrEmpty(newTypeName))
+        {
+            MessageBox.Show(
+                "Must enter a value",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
+        if (!IsOnlyLetters(newTypeName))
+        {
+            MessageBox.Show(
+                "Must contain only letters",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
+        try
+        {
+            animalTypesRepository.Add(newTypeName);
+            LoadAnimalTypes();
+            addTxtBx.Clear();
+
+            MessageBox.Show(
+                "Animal type added successfully.",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                ex.Message,
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+        }
     }
 }
