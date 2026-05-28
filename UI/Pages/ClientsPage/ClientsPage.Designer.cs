@@ -57,7 +57,7 @@ partial class ClientsPage {
         clientsDataGrid.ReadOnly = true;
         clientsDataGrid.RowHeadersWidth = 62;
         clientsDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        clientsDataGrid.Size = new Size(394, 299);
+        clientsDataGrid.Size = new Size(394, 286);
         clientsDataGrid.TabIndex = 0;
         clientsDataGrid.SelectionChanged += clientsDataGrid_SelectionChanged;
         // 
@@ -72,13 +72,13 @@ partial class ClientsPage {
         animalsDataGrid.ReadOnly = true;
         animalsDataGrid.RowHeadersWidth = 62;
         animalsDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        animalsDataGrid.Size = new Size(402, 299);
+        animalsDataGrid.Size = new Size(402, 286);
         animalsDataGrid.TabIndex = 1;
         // 
         // splitContainer1
         // 
         splitContainer1.Dock = DockStyle.Fill;
-        splitContainer1.Location = new Point(0, 80);
+        splitContainer1.Location = new Point(0, 93);
         splitContainer1.Name = "splitContainer1";
         // 
         // splitContainer1.Panel1
@@ -88,7 +88,7 @@ partial class ClientsPage {
         // splitContainer1.Panel2
         // 
         splitContainer1.Panel2.Controls.Add(animalsDataGrid);
-        splitContainer1.Size = new Size(800, 299);
+        splitContainer1.Size = new Size(800, 286);
         splitContainer1.SplitterDistance = 394;
         splitContainer1.TabIndex = 0;
         // 
@@ -109,7 +109,7 @@ partial class ClientsPage {
         flowLayoutPanel1.Location = new Point(0, 0);
         flowLayoutPanel1.Name = "flowLayoutPanel1";
         flowLayoutPanel1.Padding = new Padding(8);
-        flowLayoutPanel1.Size = new Size(800, 80);
+        flowLayoutPanel1.Size = new Size(800, 93);
         flowLayoutPanel1.TabIndex = 1;
         // 
         // inputId
@@ -151,6 +151,7 @@ partial class ClientsPage {
         inputSearch.PlaceholderText = "Search";
         inputSearch.Size = new Size(140, 31);
         inputSearch.TabIndex = 4;
+        inputSearch.TextChanged += inputSearch_TextChanged;
         // 
         // btnAddClient
         // 
@@ -203,9 +204,9 @@ partial class ClientsPage {
         Text = "ClientsPage";
         ((System.ComponentModel.ISupportInitialize)clientsDataGrid).EndInit();
         ((System.ComponentModel.ISupportInitialize)animalsDataGrid).EndInit();
-        ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
         splitContainer1.Panel1.ResumeLayout(false);
         splitContainer1.Panel2.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
         splitContainer1.ResumeLayout(false);
         flowLayoutPanel1.ResumeLayout(false);
         flowLayoutPanel1.PerformLayout();
