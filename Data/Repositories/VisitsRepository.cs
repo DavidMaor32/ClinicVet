@@ -19,7 +19,12 @@ public class VisitsRepository {
 
             foreach (var medicine in visit.PrescribedMedicines) {
                 prescribedMedicines.Add(
-                    medicineRepository.Prescribe(medicine.MedicineName, medicine.Quantity, connection, transaction)
+                    medicineRepository.Prescribe(
+                        medicine.MedicineName,
+                        medicine.Quantity,
+                        connection,
+                        transaction
+                    )
                 );
             }
 
@@ -28,11 +33,13 @@ public class VisitsRepository {
             using var visitCmd = connection.CreateCommand();
             visitCmd.Transaction = transaction;
             visitCmd.CommandText = @"
-                INSERT INTO Visits (Reason, DateTime, Diagnosis, VetWorkerId, Prescriptions)
-                VALUES ($reason, $dateTime, $diagnosis, $vetWorkerId, $prescriptions);
+                INSERT INTO Visits (AnimalID, Reason, DateTime, Diagnosis, VetWorkerId, Prescriptions)
+                VALUES ($animalId, $reason, $dateTime, $diagnosis, $vetWorkerId, $prescriptions);
 
                 SELECT last_insert_rowid();";
 
+
+            visitCmd.Parameters.AddWithValue("$animalId", visit.AnimalId);
             visitCmd.Parameters.AddWithValue("$reason", visit.Reason);
             visitCmd.Parameters.AddWithValue("$dateTime", visit.DateTime.ToString("yyyy-MM-dd HH:mm:ss"));
             visitCmd.Parameters.AddWithValue("$diagnosis", visit.Diagnosis);
@@ -58,7 +65,7 @@ public class VisitsRepository {
 
         using var command = connection.CreateCommand();
         command.CommandText = @"
-            SELECT _Id, Reason, DateTime, Diagnosis, VetWorkerId, Prescriptions
+            SELECT _Id, AnimalId, Reason, DateTime, Diagnosis, VetWorkerId, Prescriptions
             FROM Visits
             ORDER BY _Id DESC;";
 
@@ -68,6 +75,7 @@ public class VisitsRepository {
 
             visits.Add(new Visit {
                 _Id = reader.GetInt32(0),
+                AnimalId = reader.GetInt32(1),
                 Reason = reader.GetString(1),
                 DateTime = DateTime.Parse(reader.GetString(2)),
                 Diagnosis = reader.GetString(3),

@@ -63,8 +63,13 @@ public static class DatabaseConfig
                 Quantity    INTEGER DEFAULT 0 CHECK(Quantity >= 0),
                 Price       REAL NOT NULL
             );",
+            @"INSERT OR IGNORE INTO Medicine (Name, Quantity, Price)
+                VALUES ('Moxypen', 10, 50);",
+            @"INSERT OR IGNORE INTO Medicine (Name, Quantity, Price)
+                VALUES ('Augmentin', 5, 80);",
             @"CREATE TABLE IF NOT EXISTS Visits (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                AnimalId INTEGER NOT NULL,
                 Reason      TEXT NOT NULL,
                 DateTime    TEXT NOT NULL,
                 Diagnosis   TEXT NOT NULL,
@@ -72,7 +77,6 @@ public static class DatabaseConfig
                 Prescriptions TEXT NOT NULL CHECK(json_valid(Prescriptions)),
                 FOREIGN KEY (VetWorkerId) REFERENCES Workers(WorkerId) ON DELETE CASCADE
             );",
-
         };
 
         foreach (var query in tableQueries)
