@@ -28,6 +28,7 @@ partial class PetForm
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PetForm));
         TB_pet_name = new TextBox();
         TB_pet_weight = new TextBox();
         Date_birth = new DateTimePicker();
@@ -295,6 +296,7 @@ partial class PetForm
         Controls.Add(X_birthDateVal);
         DoubleBuffered = true;
         ForeColor = SystemColors.ButtonHighlight;
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "PetForm";
         Text = " Pet form";
         ResumeLayout(false);
