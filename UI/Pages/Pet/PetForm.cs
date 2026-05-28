@@ -53,7 +53,7 @@ public partial class PetForm : Form
         TB_pet_name.PlaceholderText = "Only letters allowed";
         TB_pet_weight.PlaceholderText = "Weight must be between 0.1 and 100 kg";
         TB_owner.PlaceholderText = "9 digit owner ID";
-
+        Date_vac.Visible = false;
     }
 
     private void LoadAnimalTypes()
@@ -76,6 +76,18 @@ public partial class PetForm : Form
 
         lblPetTaype.Visible = false;
         return true;
+    }
+
+    private void CBxPetType_TextChanged(object sender, EventArgs e)
+    {
+        string typed = CBxPetType.Text.Trim();
+
+        int index = CBxPetType.FindStringExact(typed);
+
+        if (index != -1)
+        {
+            CBxPetType.SelectedIndex = index;
+        }
     }
 
     private bool CheckPetName(string name)
@@ -231,12 +243,18 @@ public partial class PetForm : Form
 
     private void radioButtonGotVaccine_CheckedChanged(object sender, EventArgs e)
     {
-        Date_vac.Enabled = true;
+        Date_vac.Enabled = radioButtonGotVaccine.Checked;
+        Date_vac.Visible = radioButtonGotVaccine.Checked;
     }
 
     private void radioButtonNoVacc_CheckedChanged(object sender, EventArgs e)
     {
-        Date_vac.Enabled = false;
+        if (radioButtonNoVacc.Checked)
+        {
+            Date_vac.Enabled = false;
+            Date_vac.Visible = false;
+            X_vaccineVal.Visible = false;
+        }
     }
 
     private void TB_chipSerial_TextChanged(object sender, EventArgs e)
