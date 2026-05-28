@@ -197,7 +197,7 @@ partial class staffDashboard
         // 
         // animalBindingSource
         // 
-        animalBindingSource.DataSource = typeof(Animal);
+        animalBindingSource.DataSource = typeof(AnimalDisplay);
         // 
         // label4
         // 

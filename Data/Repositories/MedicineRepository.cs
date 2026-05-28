@@ -95,17 +95,17 @@ public class MedicineRepository {
             throw new ArgumentNullException(nameof(medicine));
         }
 
-        return Prescribe(medicine._Id, quantity);
+        return Prescribe(medicine.Name, quantity);
     }
 
-    public PrescribedMedicine Prescribe(int medicineId, int quantity) {
+    public PrescribedMedicine Prescribe(string medicineName, int quantity) {
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
         connection.Open();
 
         using var transaction = connection.BeginTransaction();
 
         try {
-            var prescribedMedicine = Prescribe(medicineId, quantity, connection, transaction);
+            var prescribedMedicine = Prescribe(medicineName, quantity, connection, transaction);
             transaction.Commit();
             return prescribedMedicine;
         }

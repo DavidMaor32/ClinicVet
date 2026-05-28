@@ -84,6 +84,7 @@ partial class PetCatalogForm
         deleteBtn.TabIndex = 12;
         deleteBtn.Text = "Delete selected";
         deleteBtn.UseVisualStyleBackColor = true;
+        deleteBtn.Click += deleteBtn_Click;
         // 
         // groupBox1
         // 
