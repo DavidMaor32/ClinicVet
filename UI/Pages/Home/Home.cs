@@ -24,10 +24,10 @@ public partial class Home : Form
         clientsRepository = new ClientsRepository();
         animalsRepository = new AnimalsRepository();
 
-        btnWorkersPage.Click += CreateOpenFormHandler(new WorkersPage(workersRepository));
-        btnClientsPage.Click += CreateOpenFormHandler(new ClientsPage(clientsRepository, animalsRepository));
+        btnWorkersPage.Click += CreateOpenFormHandler(() => new WorkersPage(workersRepository));
+        btnClientsPage.Click += CreateOpenFormHandler(() => new ClientsPage(clientsRepository, animalsRepository));
 
-        btnPetsManagement.Click += CreateOpenFormHandler(new staffDashboard(animalsRepository));
+        btnPetsManagement.Click += CreateOpenFormHandler(() => new staffDashboard(animalsRepository));
         // Add AnimalsPage
         if (loggedUser.Role == Role.Vet.Value) { 
             // add ClientsPage
@@ -38,8 +38,9 @@ public partial class Home : Form
         }
     }
 
-    private EventHandler CreateOpenFormHandler(Form form) {
+    private EventHandler CreateOpenFormHandler(Func<Form> createForm) {
         return (sender, e) => {
+            Form form = createForm();
             form.Show();
             form.FormClosed += (sender, e) => this.Show();
             this.Hide();
