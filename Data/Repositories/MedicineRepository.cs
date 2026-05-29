@@ -29,7 +29,7 @@ public class MedicineRepository {
         return medicines;
     }
 
-    public Medicine GetByName(int name) {
+    public Medicine GetByName(string name) {
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
         connection.Open();
 
