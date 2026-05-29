@@ -1,219 +1,244 @@
-﻿using ClinicVet.Data.Repositories;
+using ClinicVet.Data.Models;
+using ClinicVet.Data.Repositories;
 using ClinicVet.Gui.Pages.Pet;
-using ClinicVet.Gui.Pages.PetCatalog;
 
 namespace Clinic.Gui.Pages.StaffDashboard;
 
 public partial class staffDashboard : Form
 {
     private readonly AnimalsRepository animalsRepository;
+    private readonly ClientsRepository clientsRepository;
 
     public staffDashboard(AnimalsRepository animalsRepository)
     {
         this.animalsRepository = animalsRepository;
+        clientsRepository = new ClientsRepository();
 
         InitializeComponent();
         InitSearchComboBox();
+        ConfigurePetsGrid();
+        MakeInvisibleButton(btnSearch);
+        MakeInvisibleButton(btnAddPet);
+    }
 
+    private void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+
+
+
+
+    private void ConfigurePetsGrid()
+    {
+        dgvPets.AutoGenerateColumns = true;
+        dgvPets.Columns.Clear();
+        dgvPets.DataSource = new List<AnimalDisplay>();
     }
 
     private void InitSearchComboBox()
     {
-
-        //טעינת שדות לקומבו-בוקס
-        comboBoxSearch.Items.Add("name");// if change any name go change it in btnSearch_Click
+        comboBoxSearch.Items.Add("name");
         comboBoxSearch.Items.Add("chip");
-
     }
 
     private void staffDashboard_Load(object sender, EventArgs e)
     {
-        //אתחול רשימת אובייקטים סטטים לרשימה בדאשבורד
-        //animals.Add(new Animal("Moka", "Dog", 12.5, "123456"));
-        //animals.Add(new Animal("Luna", "Cat", 4.2, "789101"));
-
         dgvPets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        dgvPets.DataSource = animalsRepository.GetAll();
     }
+
     private void btnAddPet_Click(object sender, EventArgs e)
     {
         PetForm petForm = new PetForm(animalsRepository);
         petForm.ShowDialog();
     }
 
-
-
-
-
-
-
-
-
-
-    //helper funcs ----------------------------------------
-    private Boolean IsOnlyLetters(string name)
+    private bool IsOnlyLetters(string name)
     {
         foreach (char ch in name)
         {
             if (!char.IsLetter(ch))
             {
-
                 return false;
             }
         }
+
         return true;
     }
 
-
-    private Boolean IsOnlyDigits(string chip)
+    private bool IsOnlyDigits(string chip)
     {
         foreach (char ch in chip)
         {
             if (!char.IsDigit(ch))
             {
-
                 return false;
             }
         }
+
         return true;
     }
 
-    //the handaling funcs assure the argument( name/chip) is valid and if so call the appropriate DB func
-    //true if the whole process been done successfuly
     private void handleName(string name)
     {
-        if (!(IsOnlyLetters(name)))
+        if (!IsOnlyLetters(name))
         {
             MessageBox.Show(
-            "Please enter a valid name.",
-            "Invalid name",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Warning
+                "Please enter a valid name.",
+                "Invalid name",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
             );
 
-            txtSearch.Text = "";
+            txtSearch.Text = string.Empty;
+            return;
         }
-        //---success scenario---:
 
-        List<Animal> find = null; //call db func search by chip ID; -> db.searchByName(chip)
-        foreach (Animal animal in find)
+        List<Animal> foundAnimals = animalsRepository.GetByName(name);
+
+        if (foundAnimals.Count == 0)
         {
-            animalBindingSource.Add(animal);
+            dgvPets.DataSource = new List<AnimalDisplay>();
+            MessageBox.Show(
+                "No animal found.",
+                "Invalid name",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+            return;
         }
-    }
 
-
-    private void ShowAnimal(Animal animal)
-    {
-        animalBindingSource.Add(animal);
+        dgvPets.DataSource = MapToDisplayAnimals(foundAnimals);
     }
 
     private void handleChip(string chip)
     {
-        if (!(IsOnlyDigits(chip)))
+        chip = chip.Trim();
+
+        if (!IsOnlyDigits(chip))
         {
             MessageBox.Show(
-            "Please enter a valid chip.",
-            "Invalid chip ID",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Warning
+                "Please enter a valid chip.",
+                "Invalid chip ID",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
             );
 
-            txtSearch.Text = "";
-
-            return;
-        }
-        //---success scenario---:
-        //animal find is the reurned object from the searchDB funtion
-
-        //Aniaml find=Search(chip)
-        //****מימוש פונקציה, SEARCHDB->DAVID
-
-        Animal find = new Animal("hey", "dog", 15, "645498"); //call db func search by chip ID; -> db.search(chip)
-        if (find == null)
-        {
-            MessageBox.Show(
-            "chip doesn't exist in the system, please try again!",
-            "chip not found",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Warning
-            );
-
+            txtSearch.Text = string.Empty;
             return;
         }
 
-        ShowAnimal(find);
+        try
+        {
+            Animal foundAnimal = animalsRepository.GetByChipSerial(chip);
+            dgvPets.DataSource = MapToDisplayAnimals(new List<Animal> { foundAnimal });
+        }
+        catch (Exception ex)
+        {
+            dgvPets.DataSource = new List<AnimalDisplay>();
+            MessageBox.Show(
+                ex.Message,
+                "Search failed",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+        }
     }
 
+    private List<AnimalDisplay> MapToDisplayAnimals(List<Animal> animals)
+    {
+        List<Client> clients = clientsRepository.GetAll();
 
+        return animals.Select(animal =>
+        {
+            Client owner = clients.First(c => c._Id == animal.OwnerId);
 
-    //-----------end of helper funcs
-
-
-
-
-
-
+            return new AnimalDisplay
+            {
+                Name = animal.Name,
+                AnimalType = animal.AnimalType,
+                Weight = animal.Weight,
+                Birthdate = animal.Birthdate,
+                LastVaccine = animal.LastVaccine,
+                ChipSerial = animal.ChipSerial,
+                OwnerNationalId = owner.Id
+            };
+        }).ToList();
+    }
 
     private void btnSearch_Click(object sender, EventArgs e)
     {
-        //string
-        string x = comboBoxSearch.Text.Trim().ToLower();//המרה של קלט שהמשתמש כותב לקומבו -בוקס
+        string searchType = comboBoxSearch.Text.Trim().ToLower();
+        string searchValue = txtSearch.Text.Trim();
 
-        foreach (string item in comboBoxSearch.Items)
+        if (string.IsNullOrEmpty(searchType))
         {
-            if (comboBoxSearch.SelectedItem == null)
-            {
-
-                MessageBox.Show("null");
-            }
-            else if (item.Equals(comboBoxSearch.SelectedItem.ToString()))
-            {
-                if (item.Equals("name"))
-                {
-                    handleName(txtSearch.Text);
-                }
-
-
-
-                else if (item.Equals("chip"))
-                {
-                    handleChip(txtSearch.Text);
-                }
-                else { MessageBox.Show("error"); }
-            }
+            MessageBox.Show(
+                "Please choose search type.",
+                "Invalid Search",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
         }
 
+        if (string.IsNullOrEmpty(searchValue))
+        {
+            MessageBox.Show(
+                "Please enter a search value.",
+                "Invalid Search",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
 
-        //פונקציות handle  מחזירות true/false אינדיקציה לתהליך מוצלח
-
-
-
-    }
-
-
-
-    private void button1_Click(object sender, EventArgs e)
-    {
-        PetCatalogForm petCatalogForm = new PetCatalogForm(animalsRepository);
-        petCatalogForm.ShowDialog();
+        if (searchType == "name")
+        {
+            handleName(searchValue);
+        }
+        else if (searchType == "chip")
+        {
+            handleChip(searchValue);
+        }
+        else
+        {
+            MessageBox.Show(
+                "Please choose search type: name or chip.",
+                "Invalid Search",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+        }
     }
 
     private void DgvPets_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-
     }
 
     private void Label4_Click(object sender, EventArgs e)
     {
-
     }
 }
 
-
-public class Animal(string name, string type, double weight, string chipNumber) {
-    public string Name { get; set; } = name;
-    public string Type { get; set; } = type;
-    public double Weight { get; set; } = weight;
-    public string ChipNumber { get; set; } = chipNumber;
+public class AnimalDisplay
+{
+    public string Name { get; set; } = string.Empty;
+    public string AnimalType { get; set; } = string.Empty;
+    public double Weight { get; set; }
+    public DateOnly Birthdate { get; set; }
+    public DateOnly? LastVaccine { get; set; }
+    public string ChipSerial { get; set; } = string.Empty;
+    public string OwnerNationalId { get; set; } = string.Empty;
 }

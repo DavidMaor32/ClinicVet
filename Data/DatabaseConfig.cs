@@ -57,6 +57,10 @@ public static class DatabaseConfig
                 LastVaccine TEXT DEFAULT NULL,
                 FOREIGN KEY (OwnerId) REFERENCES Clients(_Id) ON DELETE CASCADE
             );",
+            @"CREATE TABLE IF NOT EXISTS AnimalTypes (
+                _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                Name        TEXT NOT NULL UNIQUE COLLATE NOCASE
+            );",
             @"CREATE TABLE IF NOT EXISTS Medicine (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name        TEXT NOT NULL UNIQUE,
@@ -80,6 +84,24 @@ public static class DatabaseConfig
             using var tableCommand = connection.CreateCommand();
             tableCommand.CommandText = query;
             tableCommand.ExecuteNonQuery();
+        }
+
+        using var countCommand = connection.CreateCommand();
+        countCommand.CommandText = "SELECT COUNT(*) FROM AnimalTypes";
+
+        long animalTypesCount = (long)countCommand.ExecuteScalar();
+
+        if (animalTypesCount == 0)
+        {
+            string[] defaultTypes = { "Dog", "Cat", "Bird", "Reptile" };
+
+            foreach (string typeName in defaultTypes)
+            {
+                using var insertCommand = connection.CreateCommand();
+                insertCommand.CommandText = "INSERT INTO AnimalTypes (Name) VALUES ($name)";
+                insertCommand.Parameters.AddWithValue("$name", typeName);
+                insertCommand.ExecuteNonQuery();
+            }
         }
     }
 }
