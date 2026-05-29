@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using ClinicVet.Data.Models;
+
 namespace ClinicVet.Data;
 
 public static class ModelValidator
@@ -23,5 +25,14 @@ public static class ModelValidator
         }
 
         return isValid;
+    }
+    public static bool NeedsAnnualVaccine(Animal animal) {
+        if (animal.LastVaccine == default || animal.LastVaccine == null) {
+            return true;
+        }
+
+        DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+        return animal.LastVaccine.Value.AddYears(1) <= today;
     }
 }

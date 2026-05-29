@@ -4,6 +4,7 @@ using System.Text.Json;
 
 namespace ClinicVet.Data.Models;
 
+
 public class Visit : Document {
     public static readonly double BASE_PRICE = 100;
 
@@ -17,8 +18,20 @@ public class Visit : Document {
 
     [Required]
     public required string VetWorkerId { get; set; }
+    [Required]
+    public required int AnimalId { get; set; }
 
     public List<PrescribedMedicine> PrescribedMedicines { get; set; } = new();
+    public double MedicinesPrice {
+        get {
+            return PrescribedMedicines.Sum(m => m.TotalPrice);
+        }
+    }
+    public double TotalPrice {
+        get {
+            return BASE_PRICE + MedicinesPrice;
+        }
+    }
 
     public string PrescribedMedicinesJson => JsonSerializer.Serialize(PrescribedMedicines);
 }

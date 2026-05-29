@@ -55,7 +55,7 @@ public class MedicineRepository {
     }
 
     public void Add(Medicine medicine) {
-        if (IsNameExists(medicine.Name)) { 
+        if (IsNameExists(medicine.Name)) {
             throw new Exception($"medicine with name '{medicine.Name}' already exists.");
         }
 
@@ -89,7 +89,6 @@ public class MedicineRepository {
             throw new Exception($"couldn't find medicine with name '{medicineName}'");
         }
     }
-
     public PrescribedMedicine Prescribe(Medicine medicine, int quantity) {
         if (medicine is null) {
             throw new ArgumentNullException(nameof(medicine));
@@ -115,7 +114,11 @@ public class MedicineRepository {
         }
     }
 
-    public PrescribedMedicine Prescribe(string medicineName, int quantity, SqliteConnection connection, SqliteTransaction transaction) {
+    public PrescribedMedicine Prescribe(
+        string medicineName,
+        int quantity,
+        SqliteConnection connection,
+        SqliteTransaction transaction) {
         if (quantity <= 0) {
             throw new Exception("quantity must be greater than zero.");
         }
@@ -123,42 +126,92 @@ public class MedicineRepository {
         using var selectCommand = connection.CreateCommand();
         selectCommand.Transaction = transaction;
         selectCommand.CommandText = @"
-            SELECT Quantity
-            FROM Medicine
-            WHERE Name = $name
-            LIMIT 1;";
+        SELECT Quantity, Price
+        FROM Medicine
+        WHERE Name = $name
+        LIMIT 1;";
+
         selectCommand.Parameters.AddWithValue("$name", medicineName);
 
         int currentQuantity;
+        double price;
+
         using (var reader = selectCommand.ExecuteReader()) {
             if (!reader.Read()) {
                 throw new Exception($"couldn't find medicine with name '{medicineName}'");
             }
 
             currentQuantity = reader.GetInt32(0);
+            price = reader.GetDouble(1);
         }
 
         if (currentQuantity < quantity) {
-            throw new Exception($"medicine '{medicineName}' does not have enough stock");
+            throw new Exception("not enough medicine in stock.");
         }
 
         using var updateCommand = connection.CreateCommand();
         updateCommand.Transaction = transaction;
         updateCommand.CommandText = @"
-            UPDATE Medicine
-            SET Quantity = Quantity - $quantity
-            WHERE Name = $name;";
+        UPDATE Medicine
+        SET Quantity = Quantity - $quantity
+        WHERE Name = $name;";
+
         updateCommand.Parameters.AddWithValue("$quantity", quantity);
         updateCommand.Parameters.AddWithValue("$name", medicineName);
+
         updateCommand.ExecuteNonQuery();
 
         return new PrescribedMedicine {
             MedicineName = medicineName,
-            Quantity = quantity
+            Quantity = quantity,
+            UnitPrice = price
         };
     }
 
     private bool IsNameExists(string name) {
         return GetAll().Any(m => m.Name.Equals(name));
     }
+    public void Delete(string medicineName) {
+        using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = @"
+        DELETE FROM Medicine
+        WHERE Name = $name;";
+
+        command.Parameters.AddWithValue("$name", medicineName);
+
+        int rowsAffected = command.ExecuteNonQuery();
+
+        if (rowsAffected == 0) {
+            throw new Exception($"couldn't find medicine with name '{medicineName}'");
+        }
+    }
+
+    public void Update(string originalName, Medicine updatedMedicine) {
+        using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+
+        command.CommandText = @"
+                    UPDATE Medicine
+                    SET Name = $newName,
+                        Quantity = $quantity,
+                        Price = $price
+                    WHERE Name = $originalName;";
+
+        command.Parameters.AddWithValue("$newName", updatedMedicine.Name);
+        command.Parameters.AddWithValue("$quantity", updatedMedicine.Quantity);
+        command.Parameters.AddWithValue("$price", updatedMedicine.Price);
+        command.Parameters.AddWithValue("$originalName", originalName);
+
+        int rowsAffected = command.ExecuteNonQuery();
+
+        if (rowsAffected == 0) {
+            throw new Exception("Medicine not found");
+        }
+    }
+
 }

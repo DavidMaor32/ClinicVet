@@ -46,6 +46,8 @@ public static class DatabaseConfig
                 Phone       TEXT,
                 Email       TEXT
             );",
+            @"INSERT OR IGNORE INTO Clients (Id, FullName, Phone, Email)
+                VALUES ('111222333', 'David Cohen', '0501234567', 'david@email.com');",
             @"CREATE TABLE IF NOT EXISTS Animals (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name        TEXT NOT NULL,
@@ -57,6 +59,10 @@ public static class DatabaseConfig
                 LastVaccine TEXT DEFAULT NULL,
                 FOREIGN KEY (OwnerId) REFERENCES Clients(_Id) ON DELETE CASCADE
             );",
+            @"INSERT OR IGNORE INTO Animals (Name, AnimalType, ChipSerial, Weight, OwnerId, Birthdate, LastVaccine)
+                VALUES ('Lucky', 'Dog', 'CHIP1001', 12.5, (SELECT _Id FROM Clients WHERE Id = '111222333'), '2021-05-10', '2023-01-01');",
+            @"INSERT OR IGNORE INTO Animals (Name, AnimalType, ChipSerial, Weight, OwnerId, Birthdate, LastVaccine)
+                VALUES ('Mika', 'Cat', 'CHIP1002', 4.2, (SELECT _Id FROM Clients WHERE Id = '111222333'), '2022-03-15', '2026-02-01');",
             @"CREATE TABLE IF NOT EXISTS AnimalTypes (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name        TEXT NOT NULL UNIQUE COLLATE NOCASE
@@ -67,8 +73,13 @@ public static class DatabaseConfig
                 Quantity    INTEGER DEFAULT 0 CHECK(Quantity >= 0),
                 Price       REAL NOT NULL
             );",
+            @"INSERT OR IGNORE INTO Medicine (Name, Quantity, Price)
+                VALUES ('Moxypen', 10, 50);",
+            @"INSERT OR IGNORE INTO Medicine (Name, Quantity, Price)
+                VALUES ('Augmentin', 5, 80);",
             @"CREATE TABLE IF NOT EXISTS Visits (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                AnimalId INTEGER NOT NULL,
                 Reason      TEXT NOT NULL,
                 DateTime    TEXT NOT NULL,
                 Diagnosis   TEXT NOT NULL,
@@ -76,7 +87,6 @@ public static class DatabaseConfig
                 Prescriptions TEXT NOT NULL CHECK(json_valid(Prescriptions)),
                 FOREIGN KEY (VetWorkerId) REFERENCES Workers(WorkerId) ON DELETE CASCADE
             );",
-
         };
 
         foreach (var query in tableQueries)

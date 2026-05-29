@@ -141,14 +141,14 @@ public class AnimalsRepository
         command.ExecuteNonQuery();
     }
 
-    public void Delete(string chipSerial)
+    public void Delete(int _id)
     {
         using var connection = new SqliteConnection(DatabaseConfig.ConnectionString);
         connection.Open();
 
         var command = connection.CreateCommand();
-        command.CommandText = "DELETE FROM Animals WHERE ChipSerial = $serial";
-        command.Parameters.AddWithValue("$serial", chipSerial);
+        command.CommandText = "DELETE FROM Animals WHERE _id = $_id";
+        command.Parameters.AddWithValue("$_id", _id);
         command.ExecuteNonQuery();
     }
 

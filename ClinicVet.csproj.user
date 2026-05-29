@@ -10,13 +10,22 @@
     <Compile Update="UI\Pages\Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Pages\PetCatalog\PetCatalogForm.cs">
+    <Compile Update="UI\Pages\MedicineManagement\MedicineManagementPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Pages\OpenVisit\OpenVisit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\Pages\Pet\PetForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\Pages\PriceSummaryPage\PriceSummaryPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\Pages\StaffDashboard\staffDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Pages\VisitsManagementPage\VisitsManagementPage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\Pages\WorkersPage\WorkersPage.cs">
