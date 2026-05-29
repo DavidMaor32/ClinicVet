@@ -23,6 +23,9 @@ public partial class OpenVisit : Form
         this.visitsRepository = visitsRepository;
         this.practitioner = paractitioner;
 
+        MakeInvisibleButton(sendButton);
+        MakeInvisibleButton(addButton);
+
         pracName.Text = paractitioner.Username;
 
         LoadMedicines();
@@ -34,6 +37,26 @@ public partial class OpenVisit : Form
             UpdateVaccineLabel();
         };
     }
+
+    public static void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+
+   
+
+
 
     private void sendButton_Click(object sender, EventArgs e)
     {
@@ -157,8 +180,7 @@ public partial class OpenVisit : Form
         }
     }
 
-    private void OpenVisit_Load(object sender, EventArgs e)
-    {
+  
 
-    }
+    
 }

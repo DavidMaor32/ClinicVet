@@ -25,98 +25,48 @@ partial class OpenVisit {
     /// </summary>
     private void InitializeComponent()
     {
-        pracNameLabel = new Label();
-        petNameLabel = new Label();
-        visitLabel = new Label();
         VisitTextBox = new TextBox();
-        diagnosisLabel = new Label();
         diagnosisTextBox = new TextBox();
-        medicineLabel = new Label();
         medicineComboBox = new ComboBox();
         addButton = new Button();
         sendButton = new Button();
         pracName = new Label();
         vaccineLabel = new Label();
         medicineListBox = new ListBox();
-        selectedMedLabel = new Label();
-        quantityLabel = new Label();
         quantityNum = new NumericUpDown();
         petComboBox = new ComboBox();
         ((System.ComponentModel.ISupportInitialize)quantityNum).BeginInit();
         SuspendLayout();
         // 
-        // pracNameLabel
-        // 
-        pracNameLabel.AutoSize = true;
-        pracNameLabel.Location = new Point(12, 25);
-        pracNameLabel.Name = "pracNameLabel";
-        pracNameLabel.Size = new Size(149, 20);
-        pracNameLabel.TabIndex = 0;
-        pracNameLabel.Text = " Practitioner's Name: ";
-        // 
-        // petNameLabel
-        // 
-        petNameLabel.AutoSize = true;
-        petNameLabel.Location = new Point(12, 120);
-        petNameLabel.Name = "petNameLabel";
-        petNameLabel.Size = new Size(89, 20);
-        petNameLabel.TabIndex = 1;
-        petNameLabel.Text = "Pet's Name: ";
-        // 
-        // visitLabel
-        // 
-        visitLabel.AutoSize = true;
-        visitLabel.Location = new Point(12, 159);
-        visitLabel.Name = "visitLabel";
-        visitLabel.Size = new Size(92, 20);
-        visitLabel.TabIndex = 2;
-        visitLabel.Text = "Visit Reason:";
-        // 
         // VisitTextBox
         // 
-        VisitTextBox.Location = new Point(12, 182);
+        VisitTextBox.Location = new Point(253, 194);
+        VisitTextBox.Multiline = true;
         VisitTextBox.Name = "VisitTextBox";
-        VisitTextBox.Size = new Size(268, 27);
+        VisitTextBox.Size = new Size(301, 112);
         VisitTextBox.TabIndex = 4;
-        // 
-        // diagnosisLabel
-        // 
-        diagnosisLabel.AutoSize = true;
-        diagnosisLabel.Location = new Point(12, 229);
-        diagnosisLabel.Name = "diagnosisLabel";
-        diagnosisLabel.Size = new Size(77, 20);
-        diagnosisLabel.TabIndex = 5;
-        diagnosisLabel.Text = "Diagnosis:";
         // 
         // diagnosisTextBox
         // 
-        diagnosisTextBox.Location = new Point(12, 252);
+        diagnosisTextBox.Location = new Point(253, 327);
+        diagnosisTextBox.Multiline = true;
         diagnosisTextBox.Name = "diagnosisTextBox";
-        diagnosisTextBox.Size = new Size(268, 27);
+        diagnosisTextBox.Size = new Size(301, 115);
         diagnosisTextBox.TabIndex = 6;
-        // 
-        // medicineLabel
-        // 
-        medicineLabel.AutoSize = true;
-        medicineLabel.Location = new Point(12, 306);
-        medicineLabel.Name = "medicineLabel";
-        medicineLabel.Size = new Size(70, 20);
-        medicineLabel.TabIndex = 7;
-        medicineLabel.Text = "Medicine";
         // 
         // medicineComboBox
         // 
         medicineComboBox.FormattingEnabled = true;
-        medicineComboBox.Location = new Point(12, 329);
+        medicineComboBox.Location = new Point(234, 462);
         medicineComboBox.Name = "medicineComboBox";
         medicineComboBox.Size = new Size(151, 28);
         medicineComboBox.TabIndex = 8;
         // 
         // addButton
         // 
-        addButton.Location = new Point(317, 329);
+        addButton.Location = new Point(361, 549);
         addButton.Name = "addButton";
-        addButton.Size = new Size(94, 29);
+        addButton.Size = new Size(94, 50);
         addButton.TabIndex = 9;
         addButton.Text = "Add";
         addButton.UseVisualStyleBackColor = true;
@@ -124,9 +74,9 @@ partial class OpenVisit {
         // 
         // sendButton
         // 
-        sendButton.Location = new Point(352, 396);
+        sendButton.Location = new Point(514, 621);
         sendButton.Name = "sendButton";
-        sendButton.Size = new Size(94, 29);
+        sendButton.Size = new Size(180, 65);
         sendButton.TabIndex = 11;
         sendButton.Text = "Send";
         sendButton.UseVisualStyleBackColor = true;
@@ -135,109 +85,83 @@ partial class OpenVisit {
         // pracName
         // 
         pracName.AutoSize = true;
-        pracName.Location = new Point(153, 25);
+        pracName.BackColor = Color.Transparent;
+        pracName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+        pracName.ForeColor = Color.Black;
+        pracName.Location = new Point(443, 9);
         pracName.Name = "pracName";
-        pracName.Size = new Size(48, 20);
+        pracName.Size = new Size(96, 38);
         pracName.TabIndex = 13;
         pracName.Text = "David";
         // 
         // vaccineLabel
         // 
         vaccineLabel.AutoSize = true;
-        vaccineLabel.Location = new Point(447, 25);
+        vaccineLabel.BackColor = Color.Transparent;
+        vaccineLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        vaccineLabel.Location = new Point(606, 139);
         vaccineLabel.Name = "vaccineLabel";
-        vaccineLabel.Size = new Size(200, 20);
+        vaccineLabel.Size = new Size(323, 31);
         vaccineLabel.TabIndex = 15;
         vaccineLabel.Text = "Not vaccinated this past year";
         // 
         // medicineListBox
         // 
         medicineListBox.FormattingEnabled = true;
-        medicineListBox.Location = new Point(447, 105);
+        medicineListBox.Location = new Point(606, 230);
         medicineListBox.Name = "medicineListBox";
-        medicineListBox.Size = new Size(245, 144);
+        medicineListBox.Size = new Size(385, 244);
         medicineListBox.TabIndex = 12;
-        // 
-        // selectedMedLabel
-        // 
-        selectedMedLabel.AutoSize = true;
-        selectedMedLabel.Location = new Point(447, 79);
-        selectedMedLabel.Name = "selectedMedLabel";
-        selectedMedLabel.Size = new Size(134, 20);
-        selectedMedLabel.TabIndex = 10;
-        selectedMedLabel.Text = "Selected Medicine:";
-        // 
-        // quantityLabel
-        // 
-        quantityLabel.AutoSize = true;
-        quantityLabel.Location = new Point(163, 334);
-        quantityLabel.Name = "quantityLabel";
-        quantityLabel.Size = new Size(72, 20);
-        quantityLabel.TabIndex = 16;
-        quantityLabel.Text = "Quantity: ";
         // 
         // quantityNum
         // 
-        quantityNum.Location = new Point(229, 332);
+        quantityNum.Location = new Point(234, 562);
         quantityNum.Name = "quantityNum";
-        quantityNum.Size = new Size(82, 27);
+        quantityNum.Size = new Size(94, 27);
         quantityNum.TabIndex = 17;
         // 
         // petComboBox
         // 
         petComboBox.FormattingEnabled = true;
-        petComboBox.Location = new Point(97, 120);
+        petComboBox.Location = new Point(272, 102);
         petComboBox.Name = "petComboBox";
-        petComboBox.Size = new Size(151, 28);
+        petComboBox.Size = new Size(183, 28);
         petComboBox.TabIndex = 18;
         // 
         // OpenVisit
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
+        BackgroundImage = Properties.Resources._06_visit_form_background;
+        BackgroundImageLayout = ImageLayout.Stretch;
+        ClientSize = new Size(1103, 698);
         Controls.Add(petComboBox);
         Controls.Add(quantityNum);
-        Controls.Add(quantityLabel);
         Controls.Add(vaccineLabel);
         Controls.Add(pracName);
         Controls.Add(medicineListBox);
         Controls.Add(sendButton);
-        Controls.Add(selectedMedLabel);
         Controls.Add(addButton);
         Controls.Add(medicineComboBox);
-        Controls.Add(medicineLabel);
         Controls.Add(diagnosisTextBox);
-        Controls.Add(diagnosisLabel);
         Controls.Add(VisitTextBox);
-        Controls.Add(visitLabel);
-        Controls.Add(petNameLabel);
-        Controls.Add(pracNameLabel);
         Name = "OpenVisit";
         Text = "OpenVisit";
-        Load += OpenVisit_Load;
+        
         ((System.ComponentModel.ISupportInitialize)quantityNum).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
-
-    private Label pracNameLabel;
-    private Label petNameLabel;
-    private Label visitLabel;
     private TextBox VisitTextBox;
-    private Label diagnosisLabel;
     private TextBox diagnosisTextBox;
-    private Label medicineLabel;
     private ComboBox medicineComboBox;
     private Button addButton;
     private Button sendButton;
     private Label pracName;
     private Label vaccineLabel;
     private ListBox medicineListBox;
-    private Label selectedMedLabel;
-    private Label quantityLabel;
     private NumericUpDown quantityNum;
     private ComboBox petComboBox;
 }

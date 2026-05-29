@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             btnWorkersPage = new Button();
             btnClientsPage = new Button();
             btnPetsManagement = new Button();
@@ -38,60 +39,60 @@
             // 
             // btnWorkersPage
             // 
-            btnWorkersPage.Location = new Point(239, 92);
-            btnWorkersPage.Margin = new Padding(2, 2, 2, 2);
+            btnWorkersPage.Location = new Point(330, 20);
+            btnWorkersPage.Margin = new Padding(2);
             btnWorkersPage.Name = "btnWorkersPage";
-            btnWorkersPage.Size = new Size(186, 27);
+            btnWorkersPage.Size = new Size(341, 76);
             btnWorkersPage.TabIndex = 0;
             btnWorkersPage.Text = "Workers Management";
             btnWorkersPage.UseVisualStyleBackColor = true;
             // 
             // btnClientsPage
             // 
-            btnClientsPage.Location = new Point(239, 124);
-            btnClientsPage.Margin = new Padding(2, 2, 2, 2);
+            btnClientsPage.Location = new Point(330, 112);
+            btnClientsPage.Margin = new Padding(2);
             btnClientsPage.Name = "btnClientsPage";
-            btnClientsPage.Size = new Size(186, 27);
+            btnClientsPage.Size = new Size(350, 80);
             btnClientsPage.TabIndex = 1;
             btnClientsPage.Text = "Clients Management";
             btnClientsPage.UseVisualStyleBackColor = true;
             // 
             // btnPetsManagement
             // 
-            btnPetsManagement.Location = new Point(239, 156);
-            btnPetsManagement.Margin = new Padding(2, 2, 2, 2);
+            btnPetsManagement.Location = new Point(330, 196);
+            btnPetsManagement.Margin = new Padding(2);
             btnPetsManagement.Name = "btnPetsManagement";
-            btnPetsManagement.Size = new Size(186, 27);
+            btnPetsManagement.Size = new Size(341, 84);
             btnPetsManagement.TabIndex = 2;
             btnPetsManagement.Text = "Pets Management";
             btnPetsManagement.UseVisualStyleBackColor = true;
             // 
             // btnVisitsPage
             // 
-            btnVisitsPage.Location = new Point(239, 188);
-            btnVisitsPage.Margin = new Padding(2, 2, 2, 2);
+            btnVisitsPage.Location = new Point(319, 295);
+            btnVisitsPage.Margin = new Padding(2);
             btnVisitsPage.Name = "btnVisitsPage";
-            btnVisitsPage.Size = new Size(186, 27);
+            btnVisitsPage.Size = new Size(352, 79);
             btnVisitsPage.TabIndex = 3;
             btnVisitsPage.Text = "Visits";
             btnVisitsPage.UseVisualStyleBackColor = true;
             // 
             // btnMedicinePage
             // 
-            btnMedicinePage.Location = new Point(239, 220);
-            btnMedicinePage.Margin = new Padding(2, 2, 2, 2);
+            btnMedicinePage.Location = new Point(319, 393);
+            btnMedicinePage.Margin = new Padding(2);
             btnMedicinePage.Name = "btnMedicinePage";
-            btnMedicinePage.Size = new Size(186, 27);
+            btnMedicinePage.Size = new Size(352, 76);
             btnMedicinePage.TabIndex = 4;
             btnMedicinePage.Text = "Medicine Stock";
             btnMedicinePage.UseVisualStyleBackColor = true;
             // 
             // btnViewVisits
             // 
-            btnViewVisits.Location = new Point(239, 251);
+            btnViewVisits.Location = new Point(319, 482);
             btnViewVisits.Margin = new Padding(2);
             btnViewVisits.Name = "btnViewVisits";
-            btnViewVisits.Size = new Size(186, 27);
+            btnViewVisits.Size = new Size(352, 81);
             btnViewVisits.TabIndex = 5;
             btnViewVisits.Text = "View Visits";
             btnViewVisits.UseVisualStyleBackColor = true;
@@ -100,14 +101,16 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 360);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(995, 625);
             Controls.Add(btnViewVisits);
             Controls.Add(btnMedicinePage);
             Controls.Add(btnVisitsPage);
             Controls.Add(btnPetsManagement);
             Controls.Add(btnClientsPage);
             Controls.Add(btnWorkersPage);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "Home";
             Text = "Home";
             ResumeLayout(false);

@@ -23,11 +23,9 @@ partial class ClientsPage {
     /// Required method for Designer support - do not modify
     /// the contents of this method with the code editor.
     /// </summary>
-    private void InitializeComponent() {
-        clientsDataGrid = new DataGridView();
-        animalsDataGrid = new DataGridView();
-        splitContainer1 = new SplitContainer();
-        flowLayoutPanel1 = new FlowLayoutPanel();
+    private void InitializeComponent()
+    {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientsPage));
         inputId = new TextBox();
         inputFullName = new TextBox();
         inputPhone = new TextBox();
@@ -37,127 +35,64 @@ partial class ClientsPage {
         btnDeleteClient = new Button();
         btnSearch = new Button();
         btnHome = new Button();
+        clientsDataGrid = new DataGridView();
+        animalsDataGrid = new DataGridView();
         ((System.ComponentModel.ISupportInitialize)clientsDataGrid).BeginInit();
         ((System.ComponentModel.ISupportInitialize)animalsDataGrid).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-        splitContainer1.Panel1.SuspendLayout();
-        splitContainer1.Panel2.SuspendLayout();
-        splitContainer1.SuspendLayout();
-        flowLayoutPanel1.SuspendLayout();
         SuspendLayout();
-        // 
-        // clientsDataGrid
-        // 
-        clientsDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        clientsDataGrid.ColumnHeadersHeight = 34;
-        clientsDataGrid.Dock = DockStyle.Fill;
-        clientsDataGrid.Location = new Point(0, 0);
-        clientsDataGrid.MultiSelect = false;
-        clientsDataGrid.Name = "clientsDataGrid";
-        clientsDataGrid.ReadOnly = true;
-        clientsDataGrid.RowHeadersWidth = 62;
-        clientsDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        clientsDataGrid.Size = new Size(394, 286);
-        clientsDataGrid.TabIndex = 0;
-        clientsDataGrid.SelectionChanged += clientsDataGrid_SelectionChanged;
-        // 
-        // animalsDataGrid
-        // 
-        animalsDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        animalsDataGrid.ColumnHeadersHeight = 34;
-        animalsDataGrid.Dock = DockStyle.Fill;
-        animalsDataGrid.Location = new Point(0, 0);
-        animalsDataGrid.MultiSelect = false;
-        animalsDataGrid.Name = "animalsDataGrid";
-        animalsDataGrid.ReadOnly = true;
-        animalsDataGrid.RowHeadersWidth = 62;
-        animalsDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        animalsDataGrid.Size = new Size(402, 286);
-        animalsDataGrid.TabIndex = 1;
-        // 
-        // splitContainer1
-        // 
-        splitContainer1.Dock = DockStyle.Fill;
-        splitContainer1.Location = new Point(0, 93);
-        splitContainer1.Name = "splitContainer1";
-        // 
-        // splitContainer1.Panel1
-        // 
-        splitContainer1.Panel1.Controls.Add(clientsDataGrid);
-        // 
-        // splitContainer1.Panel2
-        // 
-        splitContainer1.Panel2.Controls.Add(animalsDataGrid);
-        splitContainer1.Size = new Size(800, 286);
-        splitContainer1.SplitterDistance = 394;
-        splitContainer1.TabIndex = 0;
-        // 
-        // flowLayoutPanel1
-        // 
-        flowLayoutPanel1.AutoSize = true;
-        flowLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        flowLayoutPanel1.Controls.Add(inputId);
-        flowLayoutPanel1.Controls.Add(inputFullName);
-        flowLayoutPanel1.Controls.Add(inputPhone);
-        flowLayoutPanel1.Controls.Add(inputEmail);
-        flowLayoutPanel1.Controls.Add(inputSearch);
-        flowLayoutPanel1.Controls.Add(btnAddClient);
-        flowLayoutPanel1.Controls.Add(btnDeleteClient);
-        flowLayoutPanel1.Controls.Add(btnSearch);
-        flowLayoutPanel1.Controls.Add(btnHome);
-        flowLayoutPanel1.Dock = DockStyle.Top;
-        flowLayoutPanel1.Location = new Point(0, 0);
-        flowLayoutPanel1.Name = "flowLayoutPanel1";
-        flowLayoutPanel1.Padding = new Padding(8);
-        flowLayoutPanel1.Size = new Size(800, 93);
-        flowLayoutPanel1.TabIndex = 1;
         // 
         // inputId
         // 
-        inputId.Location = new Point(11, 11);
+        inputId.Location = new Point(81, 120);
+        inputId.Margin = new Padding(2);
         inputId.Name = "inputId";
         inputId.PlaceholderText = "Id";
-        inputId.Size = new Size(120, 31);
+        inputId.Size = new Size(204, 27);
         inputId.TabIndex = 0;
         // 
         // inputFullName
         // 
-        inputFullName.Location = new Point(137, 11);
+        inputFullName.Location = new Point(211, 185);
+        inputFullName.Margin = new Padding(2);
         inputFullName.Name = "inputFullName";
         inputFullName.PlaceholderText = "Full name";
-        inputFullName.Size = new Size(160, 31);
+        inputFullName.Size = new Size(184, 27);
         inputFullName.TabIndex = 1;
         // 
         // inputPhone
         // 
-        inputPhone.Location = new Point(303, 11);
+        inputPhone.Location = new Point(649, 120);
+        inputPhone.Margin = new Padding(2);
         inputPhone.Name = "inputPhone";
         inputPhone.PlaceholderText = "Phone";
-        inputPhone.Size = new Size(140, 31);
+        inputPhone.Size = new Size(172, 27);
         inputPhone.TabIndex = 2;
         // 
         // inputEmail
         // 
-        inputEmail.Location = new Point(449, 11);
+        inputEmail.Location = new Point(649, 178);
+        inputEmail.Margin = new Padding(2);
         inputEmail.Name = "inputEmail";
         inputEmail.PlaceholderText = "Email";
-        inputEmail.Size = new Size(190, 31);
+        inputEmail.Size = new Size(182, 27);
         inputEmail.TabIndex = 3;
         // 
         // inputSearch
         // 
-        inputSearch.Location = new Point(645, 11);
+        inputSearch.Location = new Point(334, 29);
+        inputSearch.Margin = new Padding(2);
         inputSearch.Name = "inputSearch";
         inputSearch.PlaceholderText = "Search";
-        inputSearch.Size = new Size(140, 31);
+        inputSearch.Size = new Size(388, 27);
         inputSearch.TabIndex = 4;
         inputSearch.TextChanged += inputSearch_TextChanged;
         // 
         // btnAddClient
         // 
-        btnAddClient.Location = new Point(11, 48);
+        btnAddClient.Location = new Point(953, 106);
+        btnAddClient.Margin = new Padding(2);
         btnAddClient.Name = "btnAddClient";
-        btnAddClient.Size = new Size(120, 34);
+        btnAddClient.Size = new Size(225, 52);
         btnAddClient.TabIndex = 5;
         btnAddClient.Text = "Add Client";
         btnAddClient.UseVisualStyleBackColor = true;
@@ -165,9 +100,10 @@ partial class ClientsPage {
         // 
         // btnDeleteClient
         // 
-        btnDeleteClient.Location = new Point(137, 48);
+        btnDeleteClient.Location = new Point(953, 162);
+        btnDeleteClient.Margin = new Padding(2);
         btnDeleteClient.Name = "btnDeleteClient";
-        btnDeleteClient.Size = new Size(160, 34);
+        btnDeleteClient.Size = new Size(221, 58);
         btnDeleteClient.TabIndex = 6;
         btnDeleteClient.Text = "Delete Client";
         btnDeleteClient.UseVisualStyleBackColor = true;
@@ -175,9 +111,10 @@ partial class ClientsPage {
         // 
         // btnSearch
         // 
-        btnSearch.Location = new Point(303, 48);
+        btnSearch.Location = new Point(744, 11);
+        btnSearch.Margin = new Padding(2);
         btnSearch.Name = "btnSearch";
-        btnSearch.Size = new Size(120, 34);
+        btnSearch.Size = new Size(164, 63);
         btnSearch.TabIndex = 7;
         btnSearch.Text = "Search";
         btnSearch.UseVisualStyleBackColor = true;
@@ -185,41 +122,72 @@ partial class ClientsPage {
         // 
         // btnHome
         // 
-        btnHome.Location = new Point(429, 48);
+        btnHome.Location = new Point(1232, 11);
+        btnHome.Margin = new Padding(2);
         btnHome.Name = "btnHome";
-        btnHome.Size = new Size(120, 34);
+        btnHome.Size = new Size(128, 81);
         btnHome.TabIndex = 8;
         btnHome.Text = "Home";
         btnHome.UseVisualStyleBackColor = true;
         btnHome.Click += btnHome_Click;
         // 
+        // clientsDataGrid
+        // 
+        clientsDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        clientsDataGrid.ColumnHeadersHeight = 34;
+        clientsDataGrid.Location = new Point(0, 237);
+        clientsDataGrid.Margin = new Padding(2);
+        clientsDataGrid.MultiSelect = false;
+        clientsDataGrid.Name = "clientsDataGrid";
+        clientsDataGrid.ReadOnly = true;
+        clientsDataGrid.RowHeadersWidth = 62;
+        clientsDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        clientsDataGrid.Size = new Size(656, 451);
+        clientsDataGrid.TabIndex = 5;
+        // 
+        // animalsDataGrid
+        // 
+        animalsDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        animalsDataGrid.ColumnHeadersHeight = 34;
+        animalsDataGrid.Location = new Point(660, 237);
+        animalsDataGrid.Margin = new Padding(2);
+        animalsDataGrid.MultiSelect = false;
+        animalsDataGrid.Name = "animalsDataGrid";
+        animalsDataGrid.ReadOnly = true;
+        animalsDataGrid.RowHeadersWidth = 62;
+        animalsDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        animalsDataGrid.Size = new Size(700, 447);
+        animalsDataGrid.TabIndex = 4;
+        animalsDataGrid.CellContentClick += animalsDataGrid_CellContentClick;
+        // 
         // ClientsPage
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 379);
-        Controls.Add(splitContainer1);
-        Controls.Add(flowLayoutPanel1);
+        BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+        BackgroundImageLayout = ImageLayout.Stretch;
+        ClientSize = new Size(1371, 684);
+        Controls.Add(inputSearch);
+        Controls.Add(inputEmail);
+        Controls.Add(btnHome);
+        Controls.Add(btnSearch);
+        Controls.Add(btnAddClient);
+        Controls.Add(inputPhone);
+        Controls.Add(btnDeleteClient);
+        Controls.Add(inputFullName);
+        Controls.Add(inputId);
+        Controls.Add(clientsDataGrid);
+        Controls.Add(animalsDataGrid);
+        Margin = new Padding(2);
         Name = "ClientsPage";
         Text = "ClientsPage";
         ((System.ComponentModel.ISupportInitialize)clientsDataGrid).EndInit();
         ((System.ComponentModel.ISupportInitialize)animalsDataGrid).EndInit();
-        splitContainer1.Panel1.ResumeLayout(false);
-        splitContainer1.Panel2.ResumeLayout(false);
-        ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-        splitContainer1.ResumeLayout(false);
-        flowLayoutPanel1.ResumeLayout(false);
-        flowLayoutPanel1.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
-
-    private DataGridView clientsDataGrid;
-    private DataGridView animalsDataGrid;
-    private SplitContainer splitContainer1;
-    private FlowLayoutPanel flowLayoutPanel1;
     private TextBox inputId;
     private TextBox inputFullName;
     private TextBox inputPhone;
@@ -229,4 +197,6 @@ partial class ClientsPage {
     private Button btnDeleteClient;
     private Button btnSearch;
     private Button btnHome;
+    private DataGridView clientsDataGrid;
+    private DataGridView animalsDataGrid;
 }

@@ -1,4 +1,4 @@
-﻿using Clinic.Gui.Pages.StaffDashboard;
+using Clinic.Gui.Pages.StaffDashboard;
 
 using ClinicVet.Data.Enums;
 using ClinicVet.Data.Models;
@@ -24,6 +24,7 @@ public partial class Home : Form
     {
         InitializeComponent();
 
+        hideBtns();
         currentWorker = loggedUser;
         workersRepository = new WorkerRepository();
         clientsRepository = new ClientsRepository();
@@ -32,30 +33,67 @@ public partial class Home : Form
         visitsRepository = new VisitsRepository();
 
 
-        btnWorkersPage.Click += CreateOpenFormHandler(new WorkersPage(workersRepository));
-        btnClientsPage.Click += CreateOpenFormHandler(new ClientsPage(clientsRepository, animalsRepository));
+        btnWorkersPage.Click += CreateOpenFormHandler(() => new WorkersPage(workersRepository));
+        btnClientsPage.Click += CreateOpenFormHandler(() => new ClientsPage(clientsRepository, animalsRepository));
 
-        btnPetsManagement.Click += CreateOpenFormHandler(new staffDashboard(animalsRepository));
+        btnPetsManagement.Click += CreateOpenFormHandler(() => new staffDashboard(animalsRepository));
         btnVisitsPage.Click += null;
-        btnMedicinePage.Click += CreateOpenFormHandler(new MedicineManagementPage(medicineRepository));
-        btnViewVisits.Click += CreateOpenFormHandler(new VisitsManagementPage(visitsRepository));
+        btnMedicinePage.Click += CreateOpenFormHandler(() => new MedicineManagementPage(medicineRepository));
+        btnViewVisits.Click += CreateOpenFormHandler(() => new VisitsManagementPage(visitsRepository));
 
         // Add AnimalsPage
-        if (loggedUser.Role == Role.Vet.Value) {
+        if (loggedUser.Role == Role.Vet.Value)
+        {
             // add ClientsPage
-            btnVisitsPage.Click += CreateOpenFormHandler(new OpenVisit(medicineRepository, animalsRepository, visitsRepository, currentWorker));
+            btnVisitsPage.Click += CreateOpenFormHandler(() => new OpenVisit(medicineRepository, animalsRepository, visitsRepository, currentWorker));
         }
 
-        if (loggedUser.Role == Role.Secretary.Value) { 
+        if (loggedUser.Role == Role.Secretary.Value)
+        {
             // VisitsPage
         }
     }
 
-    private EventHandler CreateOpenFormHandler(Form form) {
-        return (sender, e) => {
+
+    public static void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+    private void hideBtns()
+    {
+        MakeInvisibleButton(btnWorkersPage);
+        MakeInvisibleButton(btnClientsPage);
+        MakeInvisibleButton(btnPetsManagement);
+        MakeInvisibleButton(btnVisitsPage);
+        MakeInvisibleButton(btnMedicinePage);
+        MakeInvisibleButton(btnViewVisits);
+    }
+
+
+
+    private EventHandler CreateOpenFormHandler(Func<Form> createForm)
+    {
+        return (sender, e) =>
+        {
+            Form form = createForm();
             form.Show();
             form.FormClosed += (sender, e) => this.Show();
             this.Hide();
         };
     }
+
+
+
+
 }
