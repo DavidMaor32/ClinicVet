@@ -26,41 +26,43 @@ partial class Login
     ///  Required method for Designer support - do not modify
     ///  the contents of this method with the code editor.
     /// </summary>
-    private void InitializeComponent() {
+    private void InitializeComponent()
+    {
         inputName = new TextBox();
         inputPassword = new TextBox();
         btnLogin = new Button();
         togglePasswordVisible = new CheckBox();
-        flowLayoutPanel1 = new FlowLayoutPanel();
         label1 = new Label();
-        flowLayoutPanel1.SuspendLayout();
         SuspendLayout();
         // 
         // inputName
         // 
         inputName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        inputName.Location = new Point(3, 3);
+        inputName.Location = new Point(484, 210);
+        inputName.Margin = new Padding(2);
         inputName.Name = "inputName";
         inputName.PlaceholderText = "Username";
-        inputName.Size = new Size(162, 31);
+        inputName.Size = new Size(243, 27);
         inputName.TabIndex = 0;
         // 
         // inputPassword
         // 
         inputPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-        inputPassword.Location = new Point(3, 40);
+        inputPassword.Location = new Point(484, 312);
+        inputPassword.Margin = new Padding(2);
         inputPassword.Name = "inputPassword";
         inputPassword.PlaceholderText = "Password";
-        inputPassword.Size = new Size(162, 31);
+        inputPassword.Size = new Size(243, 27);
         inputPassword.TabIndex = 1;
         inputPassword.UseSystemPasswordChar = true;
         // 
         // btnLogin
         // 
         btnLogin.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        btnLogin.Location = new Point(3, 112);
+        btnLogin.Location = new Point(456, 444);
+        btnLogin.Margin = new Padding(2);
         btnLogin.Name = "btnLogin";
-        btnLogin.Size = new Size(162, 34);
+        btnLogin.Size = new Size(204, 73);
         btnLogin.TabIndex = 2;
         btnLogin.Text = "Login";
         btnLogin.UseVisualStyleBackColor = true;
@@ -70,47 +72,41 @@ partial class Login
         // 
         togglePasswordVisible.Anchor = AnchorStyles.Left | AnchorStyles.Right;
         togglePasswordVisible.AutoSize = true;
-        togglePasswordVisible.Location = new Point(3, 77);
+        togglePasswordVisible.BackColor = Color.Transparent;
+        togglePasswordVisible.Location = new Point(456, 375);
+        togglePasswordVisible.Margin = new Padding(2);
         togglePasswordVisible.Name = "togglePasswordVisible";
-        togglePasswordVisible.Size = new Size(162, 29);
+        togglePasswordVisible.Size = new Size(18, 17);
         togglePasswordVisible.TabIndex = 3;
-        togglePasswordVisible.Text = "Show Password";
-        togglePasswordVisible.UseVisualStyleBackColor = true;
+        togglePasswordVisible.UseVisualStyleBackColor = false;
         togglePasswordVisible.CheckedChanged += TogglePasswordVisible_CheckedChanged;
-        // 
-        // flowLayoutPanel1
-        // 
-        flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        flowLayoutPanel1.Controls.Add(inputName);
-        flowLayoutPanel1.Controls.Add(inputPassword);
-        flowLayoutPanel1.Controls.Add(togglePasswordVisible);
-        flowLayoutPanel1.Controls.Add(btnLogin);
-        flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-        flowLayoutPanel1.Location = new Point(297, 110);
-        flowLayoutPanel1.Name = "flowLayoutPanel1";
-        flowLayoutPanel1.Size = new Size(171, 160);
-        flowLayoutPanel1.TabIndex = 4;
         // 
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(297, 9);
+        label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        label1.Location = new Point(51, 223);
+        label1.Margin = new Padding(2, 0, 2, 0);
         label1.Name = "label1";
-        label1.Size = new Size(178, 75);
+        label1.Size = new Size(193, 84);
         label1.TabIndex = 5;
         label1.Text = "default user\r\nusername: admin12\r\npassword:admin123!\r\n";
         // 
         // Login
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
+        BackgroundImage = Properties.Resources._02_login_background;
+        BackgroundImageLayout = ImageLayout.Stretch;
+        ClientSize = new Size(1157, 635);
+        Controls.Add(inputName);
+        Controls.Add(inputPassword);
         Controls.Add(label1);
-        Controls.Add(flowLayoutPanel1);
+        Controls.Add(togglePasswordVisible);
+        Controls.Add(btnLogin);
+        Margin = new Padding(2);
         Name = "Login";
         Text = "ClinicVet";
-        flowLayoutPanel1.ResumeLayout(false);
-        flowLayoutPanel1.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -121,6 +117,5 @@ partial class Login
     private TextBox inputPassword;
     private Button btnLogin;
     private CheckBox togglePasswordVisible;
-    private FlowLayoutPanel flowLayoutPanel1;
     private Label label1;
 }

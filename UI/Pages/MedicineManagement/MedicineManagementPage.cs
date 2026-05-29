@@ -9,9 +9,9 @@ public partial class MedicineManagementPage : Form {
 
     public MedicineManagementPage(MedicineRepository medicineRepository) {
         InitializeComponent();
-
+        hidebtns();
         this.medicineRepository = medicineRepository;
-
+      
         LoadMedicines();
 
         medicineGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -19,6 +19,34 @@ public partial class MedicineManagementPage : Form {
         medicineGridView.MultiSelect = false;
         medicineGridView.ReadOnly = true;
     }
+
+
+    public static void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+
+    private void hidebtns()
+    {
+        MakeInvisibleButton(addMedButton);
+        MakeInvisibleButton(clearButton);
+        MakeInvisibleButton(updateButton);
+        MakeInvisibleButton(deleteButton);
+        MakeInvisibleButton(refreshButton);
+    }
+
+
 
     private void LoadMedicines() {
         List<Medicine> medicines = medicineRepository.GetAll();

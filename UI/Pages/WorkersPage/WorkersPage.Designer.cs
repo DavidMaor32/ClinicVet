@@ -23,11 +23,11 @@ partial class WorkersPage {
     /// Required method for Designer support - do not modify
     /// the contents of this method with the code editor.
     /// </summary>
-    private void InitializeComponent() {
+    private void InitializeComponent()
+    {
         workersDataGrid = new DataGridView();
         flowLayoutPanel1 = new FlowLayoutPanel();
         btnAddWorker = new Button();
-        flowLayoutPanel2 = new FlowLayoutPanel();
         inputUsername = new TextBox();
         inputPassword = new TextBox();
         inputWorkId = new TextBox();
@@ -36,112 +36,104 @@ partial class WorkersPage {
         inputRole = new ComboBox();
         btnHome = new Button();
         ((System.ComponentModel.ISupportInitialize)workersDataGrid).BeginInit();
-        flowLayoutPanel2.SuspendLayout();
         SuspendLayout();
         // 
         // workersDataGrid
         // 
         workersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         workersDataGrid.ColumnHeadersHeight = 34;
-        workersDataGrid.Dock = DockStyle.Bottom;
-        workersDataGrid.Location = new Point(0, 151);
+        workersDataGrid.Location = new Point(11, 270);
+        workersDataGrid.Margin = new Padding(2);
         workersDataGrid.Name = "workersDataGrid";
         workersDataGrid.ReadOnly = true;
         workersDataGrid.RowHeadersWidth = 62;
         workersDataGrid.ScrollBars = ScrollBars.Vertical;
-        workersDataGrid.Size = new Size(800, 299);
+        workersDataGrid.Size = new Size(989, 335);
         workersDataGrid.TabIndex = 0;
         // 
         // flowLayoutPanel1
         // 
         flowLayoutPanel1.AutoSize = true;
         flowLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        flowLayoutPanel1.Location = new Point(101, 111);
+        flowLayoutPanel1.Location = new Point(175, 215);
+        flowLayoutPanel1.Margin = new Padding(2);
         flowLayoutPanel1.Name = "flowLayoutPanel1";
         flowLayoutPanel1.Size = new Size(0, 0);
         flowLayoutPanel1.TabIndex = 1;
         // 
         // btnAddWorker
         // 
-        btnAddWorker.Location = new Point(221, 79);
+        btnAddWorker.Location = new Point(669, 161);
+        btnAddWorker.Margin = new Padding(2);
         btnAddWorker.Name = "btnAddWorker";
-        btnAddWorker.Size = new Size(212, 34);
+        btnAddWorker.Size = new Size(176, 72);
         btnAddWorker.TabIndex = 2;
         btnAddWorker.Text = "Add Worker";
         btnAddWorker.UseVisualStyleBackColor = true;
         btnAddWorker.Click += btnAddWorker_Click;
         // 
-        // flowLayoutPanel2
-        // 
-        flowLayoutPanel2.Controls.Add(inputUsername);
-        flowLayoutPanel2.Controls.Add(inputPassword);
-        flowLayoutPanel2.Controls.Add(inputWorkId);
-        flowLayoutPanel2.Controls.Add(inputId);
-        flowLayoutPanel2.Controls.Add(inputEmail);
-        flowLayoutPanel2.Controls.Add(inputRole);
-        flowLayoutPanel2.Controls.Add(btnAddWorker);
-        flowLayoutPanel2.Dock = DockStyle.Left;
-        flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-        flowLayoutPanel2.Location = new Point(0, 0);
-        flowLayoutPanel2.Name = "flowLayoutPanel2";
-        flowLayoutPanel2.Size = new Size(441, 151);
-        flowLayoutPanel2.TabIndex = 3;
-        // 
         // inputUsername
         // 
-        inputUsername.Location = new Point(3, 3);
+        inputUsername.Location = new Point(184, 27);
+        inputUsername.Margin = new Padding(2);
         inputUsername.Name = "inputUsername";
         inputUsername.PlaceholderText = "Username";
-        inputUsername.Size = new Size(212, 31);
+        inputUsername.Size = new Size(170, 27);
         inputUsername.TabIndex = 0;
         // 
         // inputPassword
         // 
-        inputPassword.Location = new Point(3, 40);
+        inputPassword.Location = new Point(184, 88);
+        inputPassword.Margin = new Padding(2);
         inputPassword.Name = "inputPassword";
         inputPassword.PlaceholderText = "Password";
-        inputPassword.Size = new Size(212, 31);
+        inputPassword.Size = new Size(170, 27);
         inputPassword.TabIndex = 1;
         // 
         // inputWorkId
         // 
-        inputWorkId.Location = new Point(3, 77);
+        inputWorkId.Location = new Point(153, 149);
+        inputWorkId.Margin = new Padding(2);
         inputWorkId.Name = "inputWorkId";
         inputWorkId.PlaceholderText = "WorkerId";
-        inputWorkId.Size = new Size(212, 31);
+        inputWorkId.Size = new Size(170, 27);
         inputWorkId.TabIndex = 2;
         // 
         // inputId
         // 
-        inputId.Location = new Point(3, 114);
+        inputId.Location = new Point(450, 27);
+        inputId.Margin = new Padding(2);
         inputId.Name = "inputId";
         inputId.PlaceholderText = "Id";
-        inputId.Size = new Size(212, 31);
+        inputId.Size = new Size(170, 27);
         inputId.TabIndex = 4;
         // 
         // inputEmail
         // 
-        inputEmail.Location = new Point(221, 3);
+        inputEmail.Location = new Point(487, 88);
+        inputEmail.Margin = new Padding(2);
         inputEmail.Name = "inputEmail";
         inputEmail.PlaceholderText = "Email";
-        inputEmail.Size = new Size(212, 31);
+        inputEmail.Size = new Size(170, 27);
         inputEmail.TabIndex = 3;
         // 
         // inputRole
         // 
         inputRole.FormattingEnabled = true;
-        inputRole.Location = new Point(221, 40);
+        inputRole.Location = new Point(471, 149);
+        inputRole.Margin = new Padding(2);
         inputRole.Name = "inputRole";
-        inputRole.Size = new Size(212, 33);
+        inputRole.Size = new Size(170, 28);
         inputRole.TabIndex = 5;
         inputRole.Text = "Role";
         // 
         // btnHome
         // 
         btnHome.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        btnHome.Location = new Point(676, 12);
+        btnHome.Location = new Point(938, 10);
+        btnHome.Margin = new Padding(2);
         btnHome.Name = "btnHome";
-        btnHome.Size = new Size(112, 34);
+        btnHome.Size = new Size(90, 75);
         btnHome.TabIndex = 4;
         btnHome.Text = "Home";
         btnHome.UseVisualStyleBackColor = true;
@@ -149,18 +141,25 @@ partial class WorkersPage {
         // 
         // WorkersPage
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
+        BackgroundImage = Properties.Resources._03_workers_management_background1;
+        BackgroundImageLayout = ImageLayout.Stretch;
+        ClientSize = new Size(1037, 641);
+        Controls.Add(inputUsername);
+        Controls.Add(inputPassword);
         Controls.Add(btnHome);
-        Controls.Add(flowLayoutPanel2);
+        Controls.Add(inputWorkId);
+        Controls.Add(inputId);
         Controls.Add(workersDataGrid);
+        Controls.Add(inputEmail);
         Controls.Add(flowLayoutPanel1);
+        Controls.Add(inputRole);
+        Controls.Add(btnAddWorker);
+        Margin = new Padding(2);
         Name = "WorkersPage";
         Text = "WorkersPage";
         ((System.ComponentModel.ISupportInitialize)workersDataGrid).EndInit();
-        flowLayoutPanel2.ResumeLayout(false);
-        flowLayoutPanel2.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -170,7 +169,6 @@ partial class WorkersPage {
     private DataGridView workersDataGrid;
     private FlowLayoutPanel flowLayoutPanel1;
     private Button btnAddWorker;
-    private FlowLayoutPanel flowLayoutPanel2;
     private TextBox inputUsername;
     private TextBox inputPassword;
     private TextBox inputWorkId;

@@ -10,7 +10,26 @@ public partial class Login : Form {
     public Login() {
         InitializeComponent();
         workerRepository = new WorkerRepository();
+        MakeInvisibleButton(btnLogin);
     }
+
+    public static void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+  
+
 
     private void button1_Click(object sender, EventArgs e) {
         try {

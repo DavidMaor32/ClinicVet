@@ -63,6 +63,76 @@ namespace ClinicVet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _01_main_menu_background {
+            get {
+                object obj = ResourceManager.GetObject("01_main_menu_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _02_login_background {
+            get {
+                object obj = ResourceManager.GetObject("02_login_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _03_workers_management_background {
+            get {
+                object obj = ResourceManager.GetObject("03_workers_management_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _03_workers_management_background1 {
+            get {
+                object obj = ResourceManager.GetObject("03_workers_management_background1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _05_medicine_stock_background {
+            get {
+                object obj = ResourceManager.GetObject("05_medicine_stock_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _06_visit_form_background {
+            get {
+                object obj = ResourceManager.GetObject("06_visit_form_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _07_summary_background {
+            get {
+                object obj = ResourceManager.GetObject("07_summary_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChatGPT_Image_May_15__2026__02_12_44_PM {
             get {
                 object obj = ResourceManager.GetObject("ChatGPT Image May 15, 2026, 02_12_44 PM", resourceCulture);

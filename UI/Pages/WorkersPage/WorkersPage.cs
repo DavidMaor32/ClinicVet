@@ -12,12 +12,33 @@ public partial class WorkersPage : Form {
     public WorkersPage(WorkerRepository workerRepository) {
         InitializeComponent();
 
+        MakeInvisibleButton(btnAddWorker);
+        MakeInvisibleButton(btnHome);
+
+
         this.workerRepository = workerRepository;
         updateDataGrid(this.workerRepository.GetAll());
         foreach (var item in Role.All) {
             inputRole.Items.Add(item);
         }
     }
+
+    public static void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+
 
     public void updateDataGrid(List<Worker> workers) {
         workersDataGrid.DataSource = workers;
