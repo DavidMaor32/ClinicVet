@@ -27,12 +27,12 @@ public static class ModelValidator
         return isValid;
     }
     public static bool NeedsAnnualVaccine(Animal animal) {
-        if (animal.LastVaccine == default) {
+        if (animal.LastVaccine == default || animal.LastVaccine == null) {
             return true;
         }
 
         DateOnly today = DateOnly.FromDateTime(DateTime.Today);
 
-        return animal.LastVaccine.AddYears(1) <= today;
+        return animal.LastVaccine.Value.AddYears(1) <= today;
     }
 }

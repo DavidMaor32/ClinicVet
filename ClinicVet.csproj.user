@@ -16,9 +16,6 @@
     <Compile Update="UI\Pages\OpenVisit\OpenVisit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Pages\PetCatalog\PetCatalogForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="UI\Pages\Pet\PetForm.cs">
       <SubType>Form</SubType>
     </Compile>

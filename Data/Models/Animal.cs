@@ -19,7 +19,7 @@ public class Animal : Document
     public required DateOnly Birthdate { get; set; }
 
     [DefaultValue(null)]
-    public DateOnly LastVaccine { get; set; }
+    public DateOnly? LastVaccine { get; set; }
 
     [Required]
     public required string ChipSerial { get; set; }

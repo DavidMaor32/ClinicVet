@@ -1,133 +1,201 @@
-﻿using ClinicVet.Data.Models;
+using ClinicVet.Data.Models;
 using ClinicVet.Data.Repositories;
+using System.ComponentModel;
 
 namespace ClinicVet.Gui.Pages.Pet;
 
-public partial class PetForm : Form {
+public partial class PetForm : Form
+{
+    private readonly BindingList<string> animalTypes = new BindingList<string>();
     private readonly AnimalsRepository animalsRepository;
+    private readonly ClientsRepository clientsRepository;
+    private readonly AnimalTypesRepository animalTypesRepository;
 
-    public PetForm(AnimalsRepository animalsRepository) {
+    public PetForm(AnimalsRepository animalsRepository)
+    {
         this.animalsRepository = animalsRepository;
+        clientsRepository = new ClientsRepository();
+        animalTypesRepository = new AnimalTypesRepository();
 
         InitializeComponent();
-        InitComboBox();
+        InitializeInputs();
+
+        catalog.DataSource = animalTypes;
+        CBxPetType.DataSource = animalTypes;
+        LoadAnimalTypes();
+        MakeInvisibleButton(btnFinishAddPet);
+        MakeInvisibleButton(deleteBtn);
+        MakeInvisibleButton(addAnimalBtn);
+        CBxPetType.DropDownStyle = ComboBoxStyle.DropDown;
+        CBxPetType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        CBxPetType.AutoCompleteSource = AutoCompleteSource.ListItems;
     }
 
-    private void InitComboBox() {
+    private void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
 
-        //טעינת שדות לקומבו-בוקס
-        CBxPetType.Items.Add("dog");
-        CBxPetType.Items.Add("cat");
-        CBxPetType.Items.Add("reptile");
-        CBxPetType.Items.Add("bird");
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
     }
 
 
+    private void InitializeInputs()
+    {
+        TB_pet_name.PlaceholderText = "Only letters allowed";
+        TB_pet_weight.PlaceholderText = "Weight must be between 0.1 and 100 kg";
+        TB_owner.PlaceholderText = "9 digit owner ID";
+        Date_vac.Visible = false;
+    }
 
+    private void LoadAnimalTypes()
+    {
+        animalTypes.Clear();
 
-    private Boolean CheckPetType() {
-        //להודי לדוד שהשדות רק באותיות קטנות
-        string x = CBxPetType.Text.Trim().ToLower();//המרה של קלט שהמשתמש כותב לקומבו -בוקס
-        if (!CBxPetType.Items.Contains(x))//אם הערך המוקלד אינו שדה בקומבו-בוקס
+        foreach (AnimalType type in animalTypesRepository.GetAll())
+        {
+            animalTypes.Add(type.Name);
+        }
+    }
+
+    private bool CheckPetType()
+    {
+        if (CBxPetType.SelectedIndex == -1)
         {
             lblPetTaype.Visible = true;
             return false;
         }
+
         lblPetTaype.Visible = false;
         return true;
     }
 
-    private Boolean CheckPetName(string name) {
-        /*{       מה בדקתי?
-         * 1.אם לא הקלידו שם קופץ שגיאה
-         * 2.אם לא הקלידו מחרוזת של אותיות
-        */
-        if (string.IsNullOrEmpty(name))   // (1)
+    private void CBxPetType_TextChanged(object sender, EventArgs e)
+    {
+        string typed = CBxPetType.Text.Trim();
+
+        int index = CBxPetType.FindStringExact(typed);
+
+        if (index != -1)
+        {
+            CBxPetType.SelectedIndex = index;
+        }
+    }
+
+    private bool CheckPetName(string name)
+    {
+        if (string.IsNullOrEmpty(name))
         {
             lblPetNameValid.Visible = true;
-
             return false;
         }
 
         bool isOnlyLetters = name.All(char.IsLetter);
 
         lblPetNameValid.Visible = !isOnlyLetters;
-
         return isOnlyLetters;
     }
 
-    private void btnFinishAddPet_Click(object sender, EventArgs e) {
+    private bool IsOnlyLetters(string value)
+    {
+        return value.All(char.IsLetter);
+    }
 
-        //השיטה הזו נוחה לקריאה
-        //bool validName = CheckPetName(TB_pet_name.Text);
-        //bool validType = CheckPetType();
-        //bool validWeight = CheckPetWeight(TB_pet_weight.Text);
-        //bool validBirth = CheckBirthDate(Date_birth.Value);
-        //bool validVacc = CheckLatestVacc(Date_vac.Value, Date_birth.Value);
+    private bool CheckOwnerId(string ownerId)
+    {
+        ownerId = ownerId.Trim();
 
+        if (ownerId.Length != 9 || ownerId.Any(ch => !char.IsDigit(ch)))
+        {
+            X_ownerVal.Visible = true;
+            return false;
+        }
 
+        X_ownerVal.Visible = false;
+        return true;
+    }
 
-
-        //if (validName && validType && validWeight && validBirth && validVacc)
-        //{
-        //    // Enter to DB. And open/close form
-        //}
-
-        //---------השיטה הזו יעילה יותר מבחינת זמן ריצה כי מדובר בשרשור IF
-        if (!isFormValid()) {
+    private void btnFinishAddPet_Click(object sender, EventArgs e)
+    {
+        if (!IsAnimalFormValid())
+        {
             MessageBox.Show(
-            "Please check the highlighted fields.",
-            "Invalid Input",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Warning
+                "Please check the highlighted fields.",
+                "Invalid Input",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
             );
-
             return;
         }
 
-        Animal newAnimal = new Animal {
-            Name = TB_pet_name.Text,
-            Weight = double.Parse(TB_pet_weight.Text),
-            LastVaccine = DateOnly.FromDateTime(Date_vac.Value),
-            Birthdate = DateOnly.FromDateTime(Date_birth.Value),
-            AnimalType = CBxPetType.Text,
-            ChipSerial = "1", //TB_chip_serial.Text, //TODO: add validation for chip serial
-            OwnerId = 1 //TODO: change to actual owner id
-        };
+        try
+        {
+            Client owner = clientsRepository.GetById(TB_owner.Text.Trim());
 
-        string message = "Added successfully.";
+            Animal newAnimal = new Animal
+            {
+                Name = TB_pet_name.Text.Trim(),
+                AnimalType = CBxPetType.Text.Trim(),
+                Weight = double.Parse(TB_pet_weight.Text),
+                Birthdate = DateOnly.FromDateTime(Date_birth.Value),
+                LastVaccine = radioButtonGotVaccine.Checked
+                    ? DateOnly.FromDateTime(Date_vac.Value)
+                    : null,
+                OwnerId = owner._Id,
+                ChipSerial = string.Empty
+            };
 
-        try {
             animalsRepository.Add(newAnimal);
-        }
-        catch (Exception ex) {
-            message = ex.Message;
-        }
-        finally {
-            _ = MessageBox.Show(message);
-        }
 
+            MessageBox.Show(
+                $"Animal added successfully. Chip serial: {newAnimal.ChipSerial}",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+            Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                ex.Message,
+                "Add Animal Failed",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+        }
     }
 
-    private bool isFormValid() {
+    private bool IsAnimalFormValid()
+    {
         return
             CheckPetName(TB_pet_name.Text) &&
             CheckPetType() &&
             CheckPetWeight(TB_pet_weight.Text) &&
             CheckBirthDate(Date_birth.Value) &&
+            CheckOwnerId(TB_owner.Text) &&
             CheckLatestVacc(Date_vac.Value, Date_birth.Value);
     }
 
-    private bool CheckPetWeight(string text) {
-
-        // בודק אם בכלל הוקלד מספר
-        if (!double.TryParse(text, out double weight)) {
+    private bool CheckPetWeight(string text)
+    {
+        if (!double.TryParse(text, out double weight))
+        {
             X_weightVal.Visible = true;
             return false;
         }
 
-        // בודק אם המספר בין 0.1 ל-100
-        if (weight < 0.1 || weight > 100) {
+        if (weight < 0.1 || weight > 100)
+        {
             X_weightVal.Visible = true;
             return false;
         }
@@ -136,15 +204,16 @@ public partial class PetForm : Form {
         return true;
     }
 
-
-    private bool CheckBirthDate(DateTime birthDate) {
-        if (birthDate > DateTime.Now) {
+    private bool CheckBirthDate(DateTime birthDate)
+    {
+        if (birthDate > DateTime.Now)
+        {
             X_birthDateVal.Visible = true;
             return false;
         }
 
-        // לא מאפשר לפני שנת 2000
-        if (birthDate.Year < 2000) {
+        if (birthDate.Year < 2000)
+        {
             X_birthDateVal.Visible = true;
             return false;
         }
@@ -153,55 +222,158 @@ public partial class PetForm : Form {
         return true;
     }
 
-
-
-
-    private bool CheckLatestVacc(DateTime LatestVac, DateTime birthDate) {
-        // MessageBox.Show("CheckLatestVacc entered");
-
-        //לא סומן כפתור
-        //if ((!radioButtonNoVacc.Checked && !radioButtonGotVaccine.Checked)
-        //    || (radioButtonNoVacc.Checked && radioButtonGotVaccine.Checked))
-        //{
-        //    X_vaccineVal.Visible = true;
-
-        //    return false;
-        //}
-
-
+    private bool CheckLatestVacc(DateTime latestVac, DateTime birthDate)
+    {
         if ((radioButtonGotVaccine.Checked &&
-            //בדיקה שתאריך החיסון נאחרון לא עתידי או קודם לתאריך הולדת החיה
-            (LatestVac.Date >= birthDate.Date && LatestVac.Date <= DateTime.Today))
-            ||
-            radioButtonNoVacc.Checked)//החיה לא חוסנה
+            latestVac.Date >= birthDate.Date &&
+            latestVac.Date <= DateTime.Today) ||
+            radioButtonNoVacc.Checked)
         {
             X_vaccineVal.Visible = false;
-
             return true;
         }
 
         MessageBox.Show(
-            "invalid vaccine date!  latest vaccine date can't be earlier than" +
-            " the animal's birthday or later than today.",
-
-            "Error!  ",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Information
-            );
+            "invalid vaccine date!  latest vaccine date can't be earlier than the animal's birthday or later than today.",
+            "Error!",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+        );
         X_vaccineVal.Visible = true;
-
         return false;
     }
 
-    private void radioButtonGotVaccine_CheckedChanged(object sender, EventArgs e) {
-        Date_vac.Enabled = true;
+    private void radioButtonGotVaccine_CheckedChanged(object sender, EventArgs e)
+    {
+        Date_vac.Enabled = radioButtonGotVaccine.Checked;
+        Date_vac.Visible = radioButtonGotVaccine.Checked;
     }
 
-    private void radioButtonNoVacc_CheckedChanged(object sender, EventArgs e) {
-        Date_vac.Enabled = false;
+    private void radioButtonNoVacc_CheckedChanged(object sender, EventArgs e)
+    {
+        if (radioButtonNoVacc.Checked)
+        {
+            Date_vac.Enabled = false;
+            Date_vac.Visible = false;
+            X_vaccineVal.Visible = false;
+        }
     }
 
-    private void TB_chipSerial_TextChanged(object sender, EventArgs e) {
+    private void TB_chipSerial_TextChanged(object sender, EventArgs e)
+    {
+    }
 
+    private void X_chipSerial_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void deleteBtn_Click(object sender, EventArgs e)
+    {
+        if (catalog.SelectedItem == null)
+        {
+            MessageBox.Show(
+                "you must choose an animal type to delete",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
+        string selectedTypeName = catalog.SelectedItem.ToString() ?? string.Empty;
+
+        DialogResult result = MessageBox.Show(
+            $"Are you sure you want to delete '{selectedTypeName}'?",
+            "Confirm Delete",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        );
+
+        if (result != DialogResult.Yes)
+        {
+            return;
+        }
+
+        try
+        {
+            animalTypesRepository.Delete(selectedTypeName);
+            LoadAnimalTypes();
+
+            MessageBox.Show(
+                "Animal type deleted successfully.",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                ex.Message,
+                "Delete Failed",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+        }
+    }
+
+    private void addAnimalBtn_Click(object sender, EventArgs e)
+    {
+        addTxtBx.Enabled = true;
+        addTxtBx.Visible = true;
+
+        DoneBtn.Enabled = true;
+        DoneBtn.Visible = true;
+    }
+
+    private void DoneBtn_Click(object sender, EventArgs e)
+    {
+        string newTypeName = addTxtBx.Text.Trim();
+
+        if (string.IsNullOrEmpty(newTypeName))
+        {
+            MessageBox.Show(
+                "Must enter a value",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
+        if (!IsOnlyLetters(newTypeName))
+        {
+            MessageBox.Show(
+                "Must contain only letters",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
+        try
+        {
+            animalTypesRepository.Add(newTypeName);
+            LoadAnimalTypes();
+            addTxtBx.Clear();
+
+            MessageBox.Show(
+                "Animal type added successfully.",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                ex.Message,
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+        }
     }
 }

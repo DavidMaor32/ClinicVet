@@ -145,7 +145,7 @@ public partial class OpenVisit : Form
 
         Animal selectedAnimal = animals[petComboBox.SelectedIndex];
 
-        DateTime lastVaccineDate = selectedAnimal.LastVaccine.ToDateTime(TimeOnly.MinValue);
+        DateTime lastVaccineDate = selectedAnimal.LastVaccine.Value.ToDateTime(TimeOnly.MinValue);
 
         if (lastVaccineDate >= DateTime.Now.AddYears(-1))
         {

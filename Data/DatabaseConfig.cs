@@ -63,6 +63,10 @@ public static class DatabaseConfig
                 VALUES ('Lucky', 'Dog', 'CHIP1001', 12.5, (SELECT _Id FROM Clients WHERE Id = '111222333'), '2021-05-10', '2023-01-01');",
             @"INSERT OR IGNORE INTO Animals (Name, AnimalType, ChipSerial, Weight, OwnerId, Birthdate, LastVaccine)
                 VALUES ('Mika', 'Cat', 'CHIP1002', 4.2, (SELECT _Id FROM Clients WHERE Id = '111222333'), '2022-03-15', '2026-02-01');",
+            @"CREATE TABLE IF NOT EXISTS AnimalTypes (
+                _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                Name        TEXT NOT NULL UNIQUE COLLATE NOCASE
+            );",
             @"CREATE TABLE IF NOT EXISTS Medicine (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name        TEXT NOT NULL UNIQUE,
@@ -90,6 +94,24 @@ public static class DatabaseConfig
             using var tableCommand = connection.CreateCommand();
             tableCommand.CommandText = query;
             tableCommand.ExecuteNonQuery();
+        }
+
+        using var countCommand = connection.CreateCommand();
+        countCommand.CommandText = "SELECT COUNT(*) FROM AnimalTypes";
+
+        long animalTypesCount = (long)countCommand.ExecuteScalar();
+
+        if (animalTypesCount == 0)
+        {
+            string[] defaultTypes = { "Dog", "Cat", "Bird", "Reptile" };
+
+            foreach (string typeName in defaultTypes)
+            {
+                using var insertCommand = connection.CreateCommand();
+                insertCommand.CommandText = "INSERT INTO AnimalTypes (Name) VALUES ($name)";
+                insertCommand.Parameters.AddWithValue("$name", typeName);
+                insertCommand.ExecuteNonQuery();
+            }
         }
     }
 }

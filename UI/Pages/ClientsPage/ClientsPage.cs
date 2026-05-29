@@ -113,4 +113,8 @@ public partial class ClientsPage : Form {
     private void clientsDataGrid_SelectionChanged(object sender, EventArgs e) {
         LoadAnimalsForSelectedClient();
     }
+
+    private void inputSearch_TextChanged(object sender, EventArgs e) {
+        RefreshClients(inputSearch.Text.Trim());
+    }
 }
