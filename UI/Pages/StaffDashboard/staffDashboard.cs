@@ -17,7 +17,28 @@ public partial class staffDashboard : Form
         InitializeComponent();
         InitSearchComboBox();
         ConfigurePetsGrid();
+        MakeInvisibleButton(btnSearch);
+        MakeInvisibleButton(btnAddPet);
     }
+
+    private void MakeInvisibleButton(Button btn)
+    {
+        btn.Visible = true;
+        btn.Enabled = true;
+
+        btn.Text = "";
+        btn.FlatStyle = FlatStyle.Flat;
+        btn.FlatAppearance.BorderSize = 0;
+        btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
+        btn.BackColor = Color.Transparent;
+        btn.UseVisualStyleBackColor = false;
+        btn.BringToFront();
+    }
+
+
+
 
     private void ConfigurePetsGrid()
     {

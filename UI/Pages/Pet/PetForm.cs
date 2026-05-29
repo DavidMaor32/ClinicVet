@@ -161,6 +161,8 @@ public partial class PetForm : Form
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
             );
+
+            Close();
         }
         catch (Exception ex)
         {

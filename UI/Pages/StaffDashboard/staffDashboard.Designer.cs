@@ -76,9 +76,9 @@ namespace Clinic.Gui.Pages.StaffDashboard
             // 
             btnAddPet.BackColor = SystemColors.ActiveCaption;
             btnAddPet.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAddPet.Location = new Point(12, 291);
+            btnAddPet.Location = new Point(12, 293);
             btnAddPet.Name = "btnAddPet";
-            btnAddPet.Size = new Size(253, 103);
+            btnAddPet.Size = new Size(262, 111);
             btnAddPet.TabIndex = 4;
             btnAddPet.Text = "Add pet";
             btnAddPet.UseVisualStyleBackColor = false;
@@ -128,7 +128,7 @@ namespace Clinic.Gui.Pages.StaffDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = global::ClinicVet.Properties.Resources.dash;
+            BackgroundImage = ClinicVet.Properties.Resources.dash;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1362, 659);
             Controls.Add(txtSearch);
