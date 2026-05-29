@@ -28,6 +28,9 @@
     <Compile Update="UI\Pages\StaffDashboard\staffDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\Pages\VisitsManagementPage\VisitsManagementPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\Pages\WorkersPage\WorkersPage.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -23,7 +23,8 @@ partial class OpenVisit {
     ///  Required method for Designer support - do not modify
     ///  the contents of this method with the code editor.
     /// </summary>
-    private void InitializeComponent() {
+    private void InitializeComponent()
+    {
         pracNameLabel = new Label();
         petNameLabel = new Label();
         visitLabel = new Label();
@@ -35,12 +36,12 @@ partial class OpenVisit {
         addButton = new Button();
         sendButton = new Button();
         pracName = new Label();
-        petName = new Label();
-        vaccineAlertLabel = new Label();
+        vaccineLabel = new Label();
         medicineListBox = new ListBox();
         selectedMedLabel = new Label();
         quantityLabel = new Label();
         quantityNum = new NumericUpDown();
+        petComboBox = new ComboBox();
         ((System.ComponentModel.ISupportInitialize)quantityNum).BeginInit();
         SuspendLayout();
         // 
@@ -140,23 +141,14 @@ partial class OpenVisit {
         pracName.TabIndex = 13;
         pracName.Text = "David";
         // 
-        // petName
+        // vaccineLabel
         // 
-        petName.AutoSize = true;
-        petName.Location = new Point(92, 120);
-        petName.Name = "petName";
-        petName.Size = new Size(60, 20);
-        petName.TabIndex = 14;
-        petName.Text = "Batman";
-        // 
-        // vaccineAlertLabel
-        // 
-        vaccineAlertLabel.AutoSize = true;
-        vaccineAlertLabel.Location = new Point(447, 25);
-        vaccineAlertLabel.Name = "vaccineAlertLabel";
-        vaccineAlertLabel.Size = new Size(200, 20);
-        vaccineAlertLabel.TabIndex = 15;
-        vaccineAlertLabel.Text = "Not vaccinated this past year";
+        vaccineLabel.AutoSize = true;
+        vaccineLabel.Location = new Point(447, 25);
+        vaccineLabel.Name = "vaccineLabel";
+        vaccineLabel.Size = new Size(200, 20);
+        vaccineLabel.TabIndex = 15;
+        vaccineLabel.Text = "Not vaccinated this past year";
         // 
         // medicineListBox
         // 
@@ -191,15 +183,23 @@ partial class OpenVisit {
         quantityNum.Size = new Size(82, 27);
         quantityNum.TabIndex = 17;
         // 
+        // petComboBox
+        // 
+        petComboBox.FormattingEnabled = true;
+        petComboBox.Location = new Point(97, 120);
+        petComboBox.Name = "petComboBox";
+        petComboBox.Size = new Size(151, 28);
+        petComboBox.TabIndex = 18;
+        // 
         // OpenVisit
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(petComboBox);
         Controls.Add(quantityNum);
         Controls.Add(quantityLabel);
-        Controls.Add(vaccineAlertLabel);
-        Controls.Add(petName);
+        Controls.Add(vaccineLabel);
         Controls.Add(pracName);
         Controls.Add(medicineListBox);
         Controls.Add(sendButton);
@@ -215,6 +215,7 @@ partial class OpenVisit {
         Controls.Add(pracNameLabel);
         Name = "OpenVisit";
         Text = "OpenVisit";
+        Load += OpenVisit_Load;
         ((System.ComponentModel.ISupportInitialize)quantityNum).EndInit();
         ResumeLayout(false);
         PerformLayout();
@@ -233,10 +234,10 @@ partial class OpenVisit {
     private Button addButton;
     private Button sendButton;
     private Label pracName;
-    private Label petName;
-    private Label vaccineAlertLabel;
+    private Label vaccineLabel;
     private ListBox medicineListBox;
     private Label selectedMedLabel;
     private Label quantityLabel;
     private NumericUpDown quantityNum;
+    private ComboBox petComboBox;
 }

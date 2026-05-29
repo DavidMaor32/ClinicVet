@@ -9,16 +9,30 @@ public partial class OpenVisit : Form
     private readonly AnimalsRepository animalsRepository;
     private readonly MedicineRepository medicineRepository;
     private readonly List<PrescribedMedicine> selectedMedicines;
+    private List<Animal> animals;
+    private readonly VisitsRepository visitsRepository;
+    private readonly Worker practitioner;
 
-    public OpenVisit(MedicineRepository medicineRepository, AnimalsRepository animalsRepository)
+    public OpenVisit(MedicineRepository medicineRepository, AnimalsRepository animalsRepository, VisitsRepository visitsRepository, Worker paractitioner)
     {
         InitializeComponent();
 
         this.animalsRepository = animalsRepository;
         this.medicineRepository = medicineRepository;
         selectedMedicines = new List<PrescribedMedicine>();
+        this.visitsRepository = visitsRepository;
+        this.practitioner = paractitioner;
+
+        pracName.Text = paractitioner.Username;
 
         LoadMedicines();
+        LoadPets();
+        UpdateVaccineLabel();
+
+        petComboBox.SelectedIndexChanged += (sender, e) =>
+        {
+            UpdateVaccineLabel();
+        };
     }
 
     private void sendButton_Click(object sender, EventArgs e)
@@ -35,17 +49,31 @@ public partial class OpenVisit : Form
             return;
         }
 
+        Animal selectedAnimal = animals[petComboBox.SelectedIndex];
+
         Visit visit = new Visit
         {
+            AnimalId = selectedAnimal._Id,
             Reason = VisitTextBox.Text,
+            DateTime = DateTime.Now,
             Diagnosis = diagnosisTextBox.Text,
-            VetWorkerId = pracName.Text,
-            AnimalId = 1,
+            VetWorkerId = practitioner.WorkerId,
             PrescribedMedicines = selectedMedicines
         };
 
-        PriceSummaryPage summaryForm = new PriceSummaryPage(visit);
-        summaryForm.Show();
+        try
+        {
+            visitsRepository.Add(visit);
+
+            MessageBox.Show("Visit saved successfully");
+
+            PriceSummaryPage summaryForm = new PriceSummaryPage(visit);
+            summaryForm.Show();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 
     private void LoadMedicines()
@@ -60,6 +88,22 @@ public partial class OpenVisit : Form
         }
     }
 
+    private void LoadPets()
+    {
+        petComboBox.Items.Clear();
+
+        animals = animalsRepository.GetAll();
+
+        foreach (Animal animal in animals)
+        {
+            petComboBox.Items.Add(animal.Name);
+        }
+
+        if (petComboBox.Items.Count > 0)
+        {
+            petComboBox.SelectedIndex = 0;
+        }
+    }
 
     private void addButton_Click(object sender, EventArgs e)
     {
@@ -89,5 +133,32 @@ public partial class OpenVisit : Form
         {
             MessageBox.Show(ex.Message);
         }
+    }
+
+    private void UpdateVaccineLabel()
+    {
+        if (petComboBox.SelectedIndex < 0 || animals == null)
+        {
+            vaccineLabel.Text = "";
+            return;
+        }
+
+        Animal selectedAnimal = animals[petComboBox.SelectedIndex];
+
+        DateTime lastVaccineDate = selectedAnimal.LastVaccine.ToDateTime(TimeOnly.MinValue);
+
+        if (lastVaccineDate >= DateTime.Now.AddYears(-1))
+        {
+            vaccineLabel.Text = "Vaccinated this past year";
+        }
+        else
+        {
+            vaccineLabel.Text = "Not vaccinated this past year";
+        }
+    }
+
+    private void OpenVisit_Load(object sender, EventArgs e)
+    {
+
     }
 }

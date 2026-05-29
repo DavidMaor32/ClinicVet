@@ -7,6 +7,7 @@ using ClinicVet.UI.Pages.ClientsPage;
 using ClinicVet.UI.Pages.WorkersPage;
 using ClinicVet.UI.Pages.MedicineManagement;
 using ClinicVet.UI.Pages.OpenVisit;
+using ClinicVet.UI.Pages.VisitsManagementPage;
 
 namespace ClinicVet.Gui.Pages.Home;
 
@@ -17,6 +18,7 @@ public partial class Home : Form
     private readonly ClientsRepository clientsRepository;
     private readonly AnimalsRepository animalsRepository;
     private readonly MedicineRepository medicineRepository;
+    private readonly VisitsRepository visitsRepository;
 
     public Home(Worker loggedUser)
     {
@@ -27,17 +29,21 @@ public partial class Home : Form
         clientsRepository = new ClientsRepository();
         animalsRepository = new AnimalsRepository();
         medicineRepository = new MedicineRepository();
+        visitsRepository = new VisitsRepository();
 
 
         btnWorkersPage.Click += CreateOpenFormHandler(new WorkersPage(workersRepository));
         btnClientsPage.Click += CreateOpenFormHandler(new ClientsPage(clientsRepository, animalsRepository));
 
         btnPetsManagement.Click += CreateOpenFormHandler(new staffDashboard(animalsRepository));
-        btnVisitsPage.Click += CreateOpenFormHandler(new OpenVisit(medicineRepository, animalsRepository));
+        btnVisitsPage.Click += null;
         btnMedicinePage.Click += CreateOpenFormHandler(new MedicineManagementPage(medicineRepository));
+        btnViewVisits.Click += CreateOpenFormHandler(new VisitsManagementPage(visitsRepository));
+
         // Add AnimalsPage
-        if (loggedUser.Role == Role.Vet.Value) { 
+        if (loggedUser.Role == Role.Vet.Value) {
             // add ClientsPage
+            btnVisitsPage.Click += CreateOpenFormHandler(new OpenVisit(medicineRepository, animalsRepository, visitsRepository, currentWorker));
         }
 
         if (loggedUser.Role == Role.Secretary.Value) { 
