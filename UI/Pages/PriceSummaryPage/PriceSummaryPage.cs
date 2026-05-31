@@ -12,7 +12,7 @@ public partial class PriceSummaryPage : Form {
     }
 
     private void ShowSummary() {
-        visitLabel.Text = $"Visit Price: {Visit.BASE_PRICE}";
+        visitLabel.Text = Visit.BASE_PRICE.ToString();
         medNum.Text = visit.MedicinesPrice.ToString();
         totalNum.Text = visit.TotalPrice.ToString();
 
