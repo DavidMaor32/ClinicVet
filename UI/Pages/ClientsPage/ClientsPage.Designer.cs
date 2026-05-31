@@ -178,8 +178,12 @@ partial class ClientsPage {
         Controls.Add(inputId);
         Controls.Add(clientsDataGrid);
         Controls.Add(animalsDataGrid);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(2);
+        MaximizeBox = false;
         Name = "ClientsPage";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "ClientsPage";
         ((System.ComponentModel.ISupportInitialize)clientsDataGrid).EndInit();
         ((System.ComponentModel.ISupportInitialize)animalsDataGrid).EndInit();

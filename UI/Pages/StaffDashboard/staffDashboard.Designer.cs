@@ -138,8 +138,11 @@ namespace Clinic.Gui.Pages.StaffDashboard
             Controls.Add(btnAddPet);
             Controls.Add(label1);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "staffDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "staffDashboard";
             ((System.ComponentModel.ISupportInitialize)dgvPets).EndInit();
             ((System.ComponentModel.ISupportInitialize)animalBindingSource).EndInit();

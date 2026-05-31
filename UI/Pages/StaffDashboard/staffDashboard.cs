@@ -15,6 +15,12 @@ public partial class staffDashboard : Form
         clientsRepository = new ClientsRepository();
 
         InitializeComponent();
+
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
         InitSearchComboBox();
         ConfigurePetsGrid();
         MakeInvisibleButton(btnSearch);

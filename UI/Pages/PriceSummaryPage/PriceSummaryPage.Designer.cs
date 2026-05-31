@@ -28,6 +28,7 @@ partial class PriceSummaryPage
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PriceSummaryPage));
         visitLabel = new Label();
         medNum = new Label();
         totalNum = new Label();
@@ -86,7 +87,11 @@ partial class PriceSummaryPage
         Controls.Add(totalNum);
         Controls.Add(medNum);
         Controls.Add(visitLabel);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
+        MinimizeBox = false;
         Name = "PriceSummaryPage";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "PriceSummary";
         ResumeLayout(false);
         PerformLayout();

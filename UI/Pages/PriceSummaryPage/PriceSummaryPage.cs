@@ -7,6 +7,12 @@ public partial class PriceSummaryPage : Form {
 
     public PriceSummaryPage(Visit visit) {
         InitializeComponent();
+
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
         this.visit = visit;
         ShowSummary();
     }

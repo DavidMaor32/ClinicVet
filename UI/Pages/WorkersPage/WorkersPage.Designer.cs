@@ -25,6 +25,7 @@ partial class WorkersPage {
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkersPage));
         workersDataGrid = new DataGridView();
         flowLayoutPanel1 = new FlowLayoutPanel();
         btnAddWorker = new Button();
@@ -156,8 +157,12 @@ partial class WorkersPage {
         Controls.Add(flowLayoutPanel1);
         Controls.Add(inputRole);
         Controls.Add(btnAddWorker);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(2);
+        MaximizeBox = false;
         Name = "WorkersPage";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "WorkersPage";
         ((System.ComponentModel.ISupportInitialize)workersDataGrid).EndInit();
         ResumeLayout(false);

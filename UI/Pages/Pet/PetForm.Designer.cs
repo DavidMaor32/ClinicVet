@@ -271,7 +271,7 @@ partial class PetForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackgroundImage = global::ClinicVet.Properties.Resources.petForm;
+        BackgroundImage = Properties.Resources.petForm;
         BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(1375, 686);
         Controls.Add(CBxPetType);
@@ -296,8 +296,11 @@ partial class PetForm
         Controls.Add(X_birthDateVal);
         DoubleBuffered = true;
         ForeColor = SystemColors.ButtonHighlight;
+        FormBorderStyle = FormBorderStyle.FixedSingle;
         Icon = (Icon)resources.GetObject("$this.Icon");
+        MaximizeBox = false;
         Name = "PetForm";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = " Pet form";
         ResumeLayout(false);
         PerformLayout();

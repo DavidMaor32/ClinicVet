@@ -12,6 +12,12 @@ public partial class WorkersPage : Form {
     public WorkersPage(WorkerRepository workerRepository) {
         InitializeComponent();
 
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
+
         MakeInvisibleButton(btnAddWorker);
         MakeInvisibleButton(btnHome);
 

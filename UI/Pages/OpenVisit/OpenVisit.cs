@@ -17,6 +17,11 @@ public partial class OpenVisit : Form
     {
         InitializeComponent();
 
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
         this.animalsRepository = animalsRepository;
         this.medicineRepository = medicineRepository;
         selectedMedicines = new List<PrescribedMedicine>();

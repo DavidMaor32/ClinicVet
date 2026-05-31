@@ -24,6 +24,11 @@ public partial class Home : Form
     {
         InitializeComponent();
 
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
         hideBtns();
         currentWorker = loggedUser;
         workersRepository = new WorkerRepository();
@@ -32,7 +37,9 @@ public partial class Home : Form
         medicineRepository = new MedicineRepository();
         visitsRepository = new VisitsRepository();
 
+       
 
+        /*
         btnWorkersPage.Click += CreateOpenFormHandler(() => new WorkersPage(workersRepository));
         btnClientsPage.Click += CreateOpenFormHandler(() => new ClientsPage(clientsRepository, animalsRepository));
 
@@ -40,18 +47,54 @@ public partial class Home : Form
         btnVisitsPage.Click += null;
         btnMedicinePage.Click += CreateOpenFormHandler(() => new MedicineManagementPage(medicineRepository));
         btnViewVisits.Click += CreateOpenFormHandler(() => new VisitsManagementPage(visitsRepository));
+        */
 
+        btnWorkersPage.Click += CreateOpenFormHandler(
+        () => new WorkersPage(workersRepository),
+        Role.Secretary.Value
+        );
+
+        btnClientsPage.Click += CreateOpenFormHandler(
+            () => new ClientsPage(clientsRepository, animalsRepository),
+            Role.Secretary.Value
+        );
+
+        btnPetsManagement.Click += CreateOpenFormHandler(
+            () => new staffDashboard(animalsRepository),
+            Role.Vet.Value,
+            Role.Secretary.Value
+        );
+
+        btnVisitsPage.Click += CreateOpenFormHandler(
+            () => new OpenVisit(medicineRepository, animalsRepository, visitsRepository, currentWorker),
+            Role.Vet.Value
+        );
+
+        btnMedicinePage.Click += CreateOpenFormHandler(
+            () => new MedicineManagementPage(medicineRepository),
+            Role.Vet.Value
+        );
+
+        btnViewVisits.Click += CreateOpenFormHandler(
+            () => new VisitsManagementPage(visitsRepository),
+            Role.Vet.Value
+           
+        );
+
+
+
+        /*/
         // Add AnimalsPage
         if (loggedUser.Role == Role.Vet.Value)
         {
             // add ClientsPage
             btnVisitsPage.Click += CreateOpenFormHandler(() => new OpenVisit(medicineRepository, animalsRepository, visitsRepository, currentWorker));
-        }
+       
 
         if (loggedUser.Role == Role.Secretary.Value)
         {
             // VisitsPage
-        }
+        } }*/
     }
 
 
@@ -81,7 +124,7 @@ public partial class Home : Form
     }
 
 
-
+    /*
     private EventHandler CreateOpenFormHandler(Func<Form> createForm)
     {
         return (sender, e) =>
@@ -92,7 +135,28 @@ public partial class Home : Form
             this.Hide();
         };
     }
+    */
+    private EventHandler CreateOpenFormHandler(Func<Form> createForm, params string[] allowedRoles)
+    {
+        return (sender, e) =>
+        {
+            if (allowedRoles.Length > 0 && !allowedRoles.Contains(currentWorker.Role))
+            {
+                MessageBox.Show(
+                    "You do not have permission to access this page.",
+                    "Access Denied",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
 
+            Form form = createForm();
+            form.Show();
+            form.FormClosed += (sender, e) => this.Show();
+            this.Hide();
+        };
+    }
 
 
 
