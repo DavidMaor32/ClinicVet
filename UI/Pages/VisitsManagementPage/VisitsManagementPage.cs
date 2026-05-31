@@ -20,6 +20,12 @@ namespace ClinicVet.UI.Pages.VisitsManagementPage
         {
             InitializeComponent();
 
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = true;
+            this.SizeGripStyle = SizeGripStyle.Hide;
+
+
             this.visitsRepository = visitsRepository;
 
             SetupGrid();

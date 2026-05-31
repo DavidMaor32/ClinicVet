@@ -28,6 +28,7 @@ partial class Login
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
         inputName = new TextBox();
         inputPassword = new TextBox();
         btnLogin = new Button();
@@ -85,12 +86,12 @@ partial class Login
         // 
         label1.AutoSize = true;
         label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        label1.Location = new Point(51, 223);
+        label1.Location = new Point(31, 178);
         label1.Margin = new Padding(2, 0, 2, 0);
         label1.Name = "label1";
-        label1.Size = new Size(193, 84);
+        label1.Size = new Size(195, 196);
         label1.TabIndex = 5;
-        label1.Text = "default user\r\nusername: admin12\r\npassword:admin123!\r\n";
+        label1.Text = "default user-vet\r\nusername: admin12\r\npassword:admin123!\r\n \r\ndefalt secretary\r\n username:adminSec \r\n password:sec1234!";
         // 
         // Login
         // 
@@ -104,8 +105,12 @@ partial class Login
         Controls.Add(label1);
         Controls.Add(togglePasswordVisible);
         Controls.Add(btnLogin);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(2);
+        MinimizeBox = false;
         Name = "Login";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "ClinicVet";
         ResumeLayout(false);
         PerformLayout();

@@ -110,8 +110,11 @@
             Controls.Add(btnPetsManagement);
             Controls.Add(btnClientsPage);
             Controls.Add(btnWorkersPage);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "Home";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
             ResumeLayout(false);
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisitsManagementPage));
             visitsGridView = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)visitsGridView).BeginInit();
             SuspendLayout();
@@ -39,16 +40,20 @@
             visitsGridView.Location = new Point(0, 0);
             visitsGridView.Name = "visitsGridView";
             visitsGridView.RowHeadersWidth = 51;
-            visitsGridView.Size = new Size(875, 503);
+            visitsGridView.Size = new Size(937, 637);
             visitsGridView.TabIndex = 0;
             // 
             // VisitsManagementPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(875, 503);
+            ClientSize = new Size(937, 637);
             Controls.Add(visitsGridView);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "VisitsManagementPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "VisitsManagementPage";
             ((System.ComponentModel.ISupportInitialize)visitsGridView).EndInit();
             ResumeLayout(false);

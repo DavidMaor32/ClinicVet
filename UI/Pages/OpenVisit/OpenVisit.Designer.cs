@@ -25,6 +25,7 @@ partial class OpenVisit {
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OpenVisit));
         VisitTextBox = new TextBox();
         diagnosisTextBox = new TextBox();
         medicineComboBox = new ComboBox();
@@ -145,9 +146,12 @@ partial class OpenVisit {
         Controls.Add(medicineComboBox);
         Controls.Add(diagnosisTextBox);
         Controls.Add(VisitTextBox);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
+        MaximizeBox = false;
         Name = "OpenVisit";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "OpenVisit";
-        
         ((System.ComponentModel.ISupportInitialize)quantityNum).EndInit();
         ResumeLayout(false);
         PerformLayout();

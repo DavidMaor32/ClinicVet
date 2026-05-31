@@ -12,6 +12,13 @@ public partial class ClientsPage : Form
     public ClientsPage(ClientsRepository clientsRepository, AnimalsRepository animalsRepository)
     {
         InitializeComponent();
+
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
+
         MakeInvisibleButton(btnSearch);
         MakeInvisibleButton(btnHome);
         MakeInvisibleButton(btnAddClient);

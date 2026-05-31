@@ -27,6 +27,7 @@ partial class MedicineManagementPage
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedicineManagementPage));
         medNameAddTextBox = new TextBox();
         addMedButton = new Button();
         clearButton = new Button();
@@ -179,7 +180,11 @@ partial class MedicineManagementPage
         Controls.Add(clearButton);
         Controls.Add(addMedButton);
         Controls.Add(medNameAddTextBox);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
+        MaximizeBox = false;
         Name = "MedicineManagementPage";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "MedicinieManagement";
         ((System.ComponentModel.ISupportInitialize)medicineGridView).EndInit();
         ((System.ComponentModel.ISupportInitialize)quantityAddNumeric).EndInit();

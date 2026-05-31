@@ -9,6 +9,12 @@ public partial class MedicineManagementPage : Form {
 
     public MedicineManagementPage(MedicineRepository medicineRepository) {
         InitializeComponent();
+
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
         hidebtns();
         this.medicineRepository = medicineRepository;
       

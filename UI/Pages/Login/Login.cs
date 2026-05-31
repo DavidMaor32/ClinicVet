@@ -9,6 +9,12 @@ public partial class Login : Form {
     private readonly WorkerRepository workerRepository;
     public Login() {
         InitializeComponent();
+
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
         workerRepository = new WorkerRepository();
         MakeInvisibleButton(btnLogin);
     }

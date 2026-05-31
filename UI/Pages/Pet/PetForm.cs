@@ -20,6 +20,11 @@ public partial class PetForm : Form
         InitializeComponent();
         InitializeInputs();
 
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        this.MaximizeBox = false;
+        this.MinimizeBox = true;
+        this.SizeGripStyle = SizeGripStyle.Hide;
+
         catalog.DataSource = animalTypes;
         CBxPetType.DataSource = animalTypes;
         LoadAnimalTypes();
