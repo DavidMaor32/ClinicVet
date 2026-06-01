@@ -169,23 +169,6 @@ public partial class ClientsPage : Form
         RefreshClients(inputSearch.Text.Trim());
     }
 
-    private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
-
-    private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
-    {
-
-    }
-
-    private void clientsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-    {
-
-    }
-
-    private void animalsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-    {
-
-    }
+    
+    
 }

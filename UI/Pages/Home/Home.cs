@@ -39,16 +39,6 @@ public partial class Home : Form
 
        
 
-        /*
-        btnWorkersPage.Click += CreateOpenFormHandler(() => new WorkersPage(workersRepository));
-        btnClientsPage.Click += CreateOpenFormHandler(() => new ClientsPage(clientsRepository, animalsRepository));
-
-        btnPetsManagement.Click += CreateOpenFormHandler(() => new staffDashboard(animalsRepository));
-        btnVisitsPage.Click += null;
-        btnMedicinePage.Click += CreateOpenFormHandler(() => new MedicineManagementPage(medicineRepository));
-        btnViewVisits.Click += CreateOpenFormHandler(() => new VisitsManagementPage(visitsRepository));
-        */
-
         btnWorkersPage.Click += CreateOpenFormHandler(
         () => new WorkersPage(workersRepository),
         Role.Secretary.Value
@@ -81,20 +71,6 @@ public partial class Home : Form
            
         );
 
-
-
-        /*/
-        // Add AnimalsPage
-        if (loggedUser.Role == Role.Vet.Value)
-        {
-            // add ClientsPage
-            btnVisitsPage.Click += CreateOpenFormHandler(() => new OpenVisit(medicineRepository, animalsRepository, visitsRepository, currentWorker));
-       
-
-        if (loggedUser.Role == Role.Secretary.Value)
-        {
-            // VisitsPage
-        } }*/
     }
 
 
@@ -124,18 +100,7 @@ public partial class Home : Form
     }
 
 
-    /*
-    private EventHandler CreateOpenFormHandler(Func<Form> createForm)
-    {
-        return (sender, e) =>
-        {
-            Form form = createForm();
-            form.Show();
-            form.FormClosed += (sender, e) => this.Show();
-            this.Hide();
-        };
-    }
-    */
+    
     private EventHandler CreateOpenFormHandler(Func<Form> createForm, params string[] allowedRoles)
     {
         return (sender, e) =>

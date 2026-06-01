@@ -3,11 +3,13 @@ using ClinicVet.Data.Models;
 using ClinicVet.Data.Repositories;
 using ClinicVet.Gui.Pages.Home;
 
-namespace ClinicVet.UI.Pages.Login; 
+namespace ClinicVet.UI.Pages.Login;
 
-public partial class Login : Form {
+public partial class Login : Form
+{
     private readonly WorkerRepository workerRepository;
-    public Login() {
+    public Login()
+    {
         InitializeComponent();
 
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -34,16 +36,19 @@ public partial class Login : Form {
         btn.UseVisualStyleBackColor = false;
         btn.BringToFront();
     }
-  
 
 
-    private void button1_Click(object sender, EventArgs e) {
-        try {
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        try
+        {
             Worker worker = workerRepository.Login(inputName.Text.ToString().Trim(), inputPassword.Text.ToString().Trim());
 
             bool isValid = ModelValidator.TryValidate(worker, out List<string> errors);
 
-            if (!isValid) {
+            if (!isValid)
+            {
                 throw new Exception(string.Join("\n", errors));
             }
 
@@ -52,12 +57,16 @@ public partial class Login : Form {
             homePage.Show();
             this.Hide();
         }
-        catch (Exception error) {
+        catch (Exception error)
+        {
             MessageBox.Show(error.Message);
         }
     }
 
-    private void TogglePasswordVisible_CheckedChanged(object sender, EventArgs e) {
+    private void TogglePasswordVisible_CheckedChanged(object sender, EventArgs e)
+    {
         inputPassword.UseSystemPasswordChar = !inputPassword.UseSystemPasswordChar;
     }
+
+  
 }

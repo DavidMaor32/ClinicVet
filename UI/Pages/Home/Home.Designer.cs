@@ -39,36 +39,40 @@
             // 
             // btnWorkersPage
             // 
-            btnWorkersPage.Location = new Point(330, 20);
+            btnWorkersPage.Cursor = Cursors.Hand;
+            btnWorkersPage.Location = new Point(319, 11);
             btnWorkersPage.Margin = new Padding(2);
             btnWorkersPage.Name = "btnWorkersPage";
-            btnWorkersPage.Size = new Size(341, 76);
+            btnWorkersPage.Size = new Size(361, 88);
             btnWorkersPage.TabIndex = 0;
             btnWorkersPage.Text = "Workers Management";
             btnWorkersPage.UseVisualStyleBackColor = true;
             // 
             // btnClientsPage
             // 
-            btnClientsPage.Location = new Point(330, 112);
+            btnClientsPage.Cursor = Cursors.Hand;
+            btnClientsPage.Location = new Point(319, 112);
             btnClientsPage.Margin = new Padding(2);
             btnClientsPage.Name = "btnClientsPage";
-            btnClientsPage.Size = new Size(350, 80);
+            btnClientsPage.Size = new Size(361, 80);
             btnClientsPage.TabIndex = 1;
             btnClientsPage.Text = "Clients Management";
             btnClientsPage.UseVisualStyleBackColor = true;
             // 
             // btnPetsManagement
             // 
-            btnPetsManagement.Location = new Point(330, 196);
+            btnPetsManagement.Cursor = Cursors.Hand;
+            btnPetsManagement.Location = new Point(319, 196);
             btnPetsManagement.Margin = new Padding(2);
             btnPetsManagement.Name = "btnPetsManagement";
-            btnPetsManagement.Size = new Size(341, 84);
+            btnPetsManagement.Size = new Size(352, 84);
             btnPetsManagement.TabIndex = 2;
             btnPetsManagement.Text = "Pets Management";
             btnPetsManagement.UseVisualStyleBackColor = true;
             // 
             // btnVisitsPage
             // 
+            btnVisitsPage.Cursor = Cursors.Hand;
             btnVisitsPage.Location = new Point(319, 295);
             btnVisitsPage.Margin = new Padding(2);
             btnVisitsPage.Name = "btnVisitsPage";
@@ -79,6 +83,7 @@
             // 
             // btnMedicinePage
             // 
+            btnMedicinePage.Cursor = Cursors.Hand;
             btnMedicinePage.Location = new Point(319, 393);
             btnMedicinePage.Margin = new Padding(2);
             btnMedicinePage.Name = "btnMedicinePage";
@@ -89,6 +94,7 @@
             // 
             // btnViewVisits
             // 
+            btnViewVisits.Cursor = Cursors.Hand;
             btnViewVisits.Location = new Point(319, 482);
             btnViewVisits.Margin = new Padding(2);
             btnViewVisits.Name = "btnViewVisits";

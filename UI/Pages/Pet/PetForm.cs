@@ -264,14 +264,7 @@ public partial class PetForm : Form
         }
     }
 
-    private void TB_chipSerial_TextChanged(object sender, EventArgs e)
-    {
-    }
-
-    private void X_chipSerial_Click(object sender, EventArgs e)
-    {
-
-    }
+  
 
     private void deleteBtn_Click(object sender, EventArgs e)
     {
