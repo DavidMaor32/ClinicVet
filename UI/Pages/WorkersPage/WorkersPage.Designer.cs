@@ -64,6 +64,7 @@ partial class WorkersPage {
         // 
         // btnAddWorker
         // 
+        btnAddWorker.Cursor = Cursors.Hand;
         btnAddWorker.Location = new Point(669, 161);
         btnAddWorker.Margin = new Padding(2);
         btnAddWorker.Name = "btnAddWorker";
@@ -131,6 +132,7 @@ partial class WorkersPage {
         // btnHome
         // 
         btnHome.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnHome.Cursor = Cursors.Hand;
         btnHome.Location = new Point(938, 10);
         btnHome.Margin = new Padding(2);
         btnHome.Name = "btnHome";

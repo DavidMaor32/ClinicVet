@@ -57,6 +57,7 @@ partial class MedicineManagementPage
         // 
         // addMedButton
         // 
+        addMedButton.Cursor = Cursors.Hand;
         addMedButton.Location = new Point(33, 353);
         addMedButton.Name = "addMedButton";
         addMedButton.Size = new Size(180, 76);
@@ -67,6 +68,7 @@ partial class MedicineManagementPage
         // 
         // clearButton
         // 
+        clearButton.Cursor = Cursors.Hand;
         clearButton.Location = new Point(236, 362);
         clearButton.Name = "clearButton";
         clearButton.Size = new Size(147, 58);
@@ -86,6 +88,7 @@ partial class MedicineManagementPage
         // 
         // deleteButton
         // 
+        deleteButton.Cursor = Cursors.Hand;
         deleteButton.Location = new Point(741, 353);
         deleteButton.Name = "deleteButton";
         deleteButton.Size = new Size(175, 67);
@@ -96,9 +99,10 @@ partial class MedicineManagementPage
         // 
         // updateButton
         // 
-        updateButton.Location = new Point(546, 353);
+        updateButton.Cursor = Cursors.Hand;
+        updateButton.Location = new Point(547, 353);
         updateButton.Name = "updateButton";
-        updateButton.Size = new Size(189, 67);
+        updateButton.Size = new Size(176, 67);
         updateButton.TabIndex = 17;
         updateButton.Text = "Update Stock";
         updateButton.UseVisualStyleBackColor = true;
@@ -113,6 +117,7 @@ partial class MedicineManagementPage
         // 
         // refreshButton
         // 
+        refreshButton.Cursor = Cursors.Hand;
         refreshButton.Location = new Point(935, 353);
         refreshButton.Name = "refreshButton";
         refreshButton.Size = new Size(101, 67);

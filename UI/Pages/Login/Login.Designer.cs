@@ -33,7 +33,6 @@ partial class Login
         inputPassword = new TextBox();
         btnLogin = new Button();
         togglePasswordVisible = new CheckBox();
-        label1 = new Label();
         SuspendLayout();
         // 
         // inputName
@@ -60,6 +59,7 @@ partial class Login
         // btnLogin
         // 
         btnLogin.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        btnLogin.Cursor = Cursors.Hand;
         btnLogin.Location = new Point(456, 444);
         btnLogin.Margin = new Padding(2);
         btnLogin.Name = "btnLogin";
@@ -82,17 +82,6 @@ partial class Login
         togglePasswordVisible.UseVisualStyleBackColor = false;
         togglePasswordVisible.CheckedChanged += TogglePasswordVisible_CheckedChanged;
         // 
-        // label1
-        // 
-        label1.AutoSize = true;
-        label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        label1.Location = new Point(31, 178);
-        label1.Margin = new Padding(2, 0, 2, 0);
-        label1.Name = "label1";
-        label1.Size = new Size(195, 196);
-        label1.TabIndex = 5;
-        label1.Text = "default user-vet\r\nusername: admin12\r\npassword:admin123!\r\n \r\ndefalt secretary\r\n username:adminSec \r\n password:sec1234!";
-        // 
         // Login
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
@@ -102,7 +91,6 @@ partial class Login
         ClientSize = new Size(1157, 635);
         Controls.Add(inputName);
         Controls.Add(inputPassword);
-        Controls.Add(label1);
         Controls.Add(togglePasswordVisible);
         Controls.Add(btnLogin);
         FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -122,5 +110,4 @@ partial class Login
     private TextBox inputPassword;
     private Button btnLogin;
     private CheckBox togglePasswordVisible;
-    private Label label1;
 }

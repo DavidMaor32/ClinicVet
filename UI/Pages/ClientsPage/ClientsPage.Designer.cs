@@ -89,6 +89,7 @@ partial class ClientsPage {
         // 
         // btnAddClient
         // 
+        btnAddClient.Cursor = Cursors.Hand;
         btnAddClient.Location = new Point(953, 106);
         btnAddClient.Margin = new Padding(2);
         btnAddClient.Name = "btnAddClient";
@@ -100,6 +101,7 @@ partial class ClientsPage {
         // 
         // btnDeleteClient
         // 
+        btnDeleteClient.Cursor = Cursors.Hand;
         btnDeleteClient.Location = new Point(953, 162);
         btnDeleteClient.Margin = new Padding(2);
         btnDeleteClient.Name = "btnDeleteClient";
@@ -111,6 +113,7 @@ partial class ClientsPage {
         // 
         // btnSearch
         // 
+        btnSearch.Cursor = Cursors.Hand;
         btnSearch.Location = new Point(744, 11);
         btnSearch.Margin = new Padding(2);
         btnSearch.Name = "btnSearch";
@@ -122,6 +125,7 @@ partial class ClientsPage {
         // 
         // btnHome
         // 
+        btnHome.Cursor = Cursors.Hand;
         btnHome.Location = new Point(1232, 11);
         btnHome.Margin = new Padding(2);
         btnHome.Name = "btnHome";
@@ -158,7 +162,6 @@ partial class ClientsPage {
         animalsDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         animalsDataGrid.Size = new Size(700, 447);
         animalsDataGrid.TabIndex = 4;
-        animalsDataGrid.CellContentClick += animalsDataGrid_CellContentClick;
         // 
         // ClientsPage
         // 

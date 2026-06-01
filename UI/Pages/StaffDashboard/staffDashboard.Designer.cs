@@ -63,6 +63,7 @@ namespace Clinic.Gui.Pages.StaffDashboard
             // btnSearch
             // 
             btnSearch.BackColor = SystemColors.ActiveCaption;
+            btnSearch.Cursor = Cursors.Hand;
             btnSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSearch.Location = new Point(1133, 47);
             btnSearch.Name = "btnSearch";
@@ -75,6 +76,7 @@ namespace Clinic.Gui.Pages.StaffDashboard
             // btnAddPet
             // 
             btnAddPet.BackColor = SystemColors.ActiveCaption;
+            btnAddPet.Cursor = Cursors.Hand;
             btnAddPet.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAddPet.Location = new Point(12, 293);
             btnAddPet.Name = "btnAddPet";

@@ -94,6 +94,7 @@ partial class PetForm
         // btnFinishAddPet
         // 
         btnFinishAddPet.BackColor = SystemColors.ActiveCaption;
+        btnFinishAddPet.Cursor = Cursors.Hand;
         btnFinishAddPet.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         btnFinishAddPet.Location = new Point(931, 607);
         btnFinishAddPet.Name = "btnFinishAddPet";
@@ -225,6 +226,7 @@ partial class PetForm
         // deleteBtn
         // 
         deleteBtn.BackColor = SystemColors.ActiveCaption;
+        deleteBtn.Cursor = Cursors.Hand;
         deleteBtn.Location = new Point(327, 551);
         deleteBtn.Name = "deleteBtn";
         deleteBtn.Size = new Size(171, 69);
@@ -236,6 +238,7 @@ partial class PetForm
         // addAnimalBtn
         // 
         addAnimalBtn.BackColor = SystemColors.ActiveCaption;
+        addAnimalBtn.Cursor = Cursors.Hand;
         addAnimalBtn.Location = new Point(91, 551);
         addAnimalBtn.Name = "addAnimalBtn";
         addAnimalBtn.Size = new Size(171, 69);
@@ -256,6 +259,7 @@ partial class PetForm
         // 
         // DoneBtn
         // 
+        DoneBtn.Cursor = Cursors.Hand;
         DoneBtn.Enabled = false;
         DoneBtn.ForeColor = SystemColors.ActiveCaptionText;
         DoneBtn.Location = new Point(250, 516);

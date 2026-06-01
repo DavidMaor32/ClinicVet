@@ -65,6 +65,7 @@ partial class OpenVisit {
         // 
         // addButton
         // 
+        addButton.Cursor = Cursors.Hand;
         addButton.Location = new Point(361, 549);
         addButton.Name = "addButton";
         addButton.Size = new Size(94, 50);
@@ -75,6 +76,7 @@ partial class OpenVisit {
         // 
         // sendButton
         // 
+        sendButton.Cursor = Cursors.Hand;
         sendButton.Location = new Point(514, 621);
         sendButton.Name = "sendButton";
         sendButton.Size = new Size(180, 65);
