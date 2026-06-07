@@ -15,7 +15,15 @@ public partial class staffDashboard : Form
         clientsRepository = new ClientsRepository();
 
         InitializeComponent();
+        InitializeAndDesign();
 
+
+
+
+    }
+
+    private void InitializeAndDesign()
+    {
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.MaximizeBox = false;
         this.MinimizeBox = true;
@@ -23,9 +31,12 @@ public partial class staffDashboard : Form
 
         InitSearchComboBox();
         ConfigurePetsGrid();
+
         MakeInvisibleButton(btnSearch);
         MakeInvisibleButton(btnAddPet);
+
     }
+
 
     private void MakeInvisibleButton(Button btn)
     {
@@ -229,18 +240,9 @@ public partial class staffDashboard : Form
         }
     }
 
-    private void DgvPets_CellContentClick(object sender, DataGridViewCellEventArgs e)
-    {
-    }
+    
 
-    private void Label4_Click(object sender, EventArgs e)
-    {
-    }
-
-    private void staffDashboard_Load_1(object sender, EventArgs e)
-    {
-
-    }
+    
 }
 
 public class AnimalDisplay

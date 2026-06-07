@@ -117,6 +117,7 @@
             Controls.Add(btnClientsPage);
             Controls.Add(btnWorkersPage);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             MaximizeBox = false;
             Name = "Home";

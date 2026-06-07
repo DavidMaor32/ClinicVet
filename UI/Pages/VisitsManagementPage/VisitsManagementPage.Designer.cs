@@ -40,14 +40,14 @@
             visitsGridView.Location = new Point(0, 0);
             visitsGridView.Name = "visitsGridView";
             visitsGridView.RowHeadersWidth = 51;
-            visitsGridView.Size = new Size(937, 637);
+            visitsGridView.Size = new Size(1502, 705);
             visitsGridView.TabIndex = 0;
             // 
             // VisitsManagementPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 637);
+            ClientSize = new Size(1502, 705);
             Controls.Add(visitsGridView);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");

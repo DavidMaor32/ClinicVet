@@ -19,7 +19,13 @@ public partial class PetForm : Form
 
         InitializeComponent();
         InitializeInputs();
+        InitializeAndDesign();
 
+        
+    }
+
+    private void InitializeAndDesign()
+    {
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.MaximizeBox = false;
         this.MinimizeBox = true;
