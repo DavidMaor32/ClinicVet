@@ -59,7 +59,7 @@ public partial class OpenVisit : Form
         btn.BringToFront();
     }
 
-   
+
 
 
 
@@ -77,6 +77,11 @@ public partial class OpenVisit : Form
             return;
         }
 
+        if (!animalsRepository.GetAll().Any(a => a.Name == petComboBox.Text))
+        {
+            MessageBox.Show("Animal isn't signed up!");
+            return;
+        }
         Animal selectedAnimal = animals[petComboBox.SelectedIndex];
 
         Visit visit = new Visit
