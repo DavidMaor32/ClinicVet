@@ -39,6 +39,8 @@ public static class DatabaseConfig
             );",
             @"INSERT OR IGNORE INTO Workers (Email, Id, Username, Password, WorkerId, Role) 
                 VALUES ('admin@clinicvet.com', '123456789', 'admin12', 'admin123!', '0000', 'VET');",
+            @"INSERT OR IGNORE INTO Workers (Email, Id, Username, Password, WorkerId, Role) 
+                VALUES ('admin@clinicvet.com', '987654321', 'adminSec', 'sec1234!', '0001', 'SECRETARY');",
             @"CREATE TABLE IF NOT EXISTS Clients (
                 _Id         INTEGER PRIMARY KEY AUTOINCREMENT,
                 Id          TEXT NOT NULL UNIQUE,
