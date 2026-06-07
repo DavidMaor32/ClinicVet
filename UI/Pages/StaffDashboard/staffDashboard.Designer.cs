@@ -146,6 +146,7 @@ namespace Clinic.Gui.Pages.StaffDashboard
             Name = "staffDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "staffDashboard";
+            Load += staffDashboard_Load_1;
             ((System.ComponentModel.ISupportInitialize)dgvPets).EndInit();
             ((System.ComponentModel.ISupportInitialize)animalBindingSource).EndInit();
             ResumeLayout(false);

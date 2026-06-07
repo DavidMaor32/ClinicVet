@@ -236,6 +236,11 @@ public partial class staffDashboard : Form
     private void Label4_Click(object sender, EventArgs e)
     {
     }
+
+    private void staffDashboard_Load_1(object sender, EventArgs e)
+    {
+
+    }
 }
 
 public class AnimalDisplay

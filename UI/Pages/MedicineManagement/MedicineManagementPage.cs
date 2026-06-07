@@ -124,9 +124,16 @@ public partial class MedicineManagementPage : Form {
             return;
         }
 
-        medicineRepository.Delete(medNameSelectedTextBox.Text);
-        LoadMedicines();
-        ClearSelectedFields();
+        try
+        {
+            medicineRepository.Delete(medNameSelectedTextBox.Text);
+            LoadMedicines();
+            ClearSelectedFields();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 
     private void ClearSelectedFields() {
