@@ -11,6 +11,8 @@ public class AnimalsRepository
         return GetAll(null);
     }
 
+
+    //משיכה של כל החיות ששייכות לאותו OWNER ID
     public List<Animal> GetAll(string? ownerId)
     {
         var animals = new List<Animal>();
@@ -152,7 +154,9 @@ public class AnimalsRepository
         command.ExecuteNonQuery();
     }
 
-    private static Animal ReadAnimal(SqliteDataReader reader)
+
+    //קוראת רשומה של חיה מתוך הDB וממירה אותה לאובייקט מסוג ANIMAL
+    private static Animal ReadAnimal(SqliteDataReader reader) 
     {
         return new Animal
         {
@@ -198,7 +202,7 @@ public class AnimalsRepository
 
     private string GenerateUniqueChipSerial()
     {
-        int attempts = 0;
+        int attempts = 0;//עד 10 נסיונות לייצור צ'יפ
 
         while (attempts < 10)
         {
